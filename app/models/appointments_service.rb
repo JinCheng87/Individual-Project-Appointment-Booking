@@ -1,2 +1,0 @@
-class AppointmentsService < ApplicationRecord
-end
