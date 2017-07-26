@@ -34,12 +34,15 @@ ActiveRecord::Schema.define(version: 20170725134312) do
   end
 
   create_table "appointments", force: :cascade do |t|
-    t.date     "date",       null: false
-    t.time     "time",       null: false
+    t.date     "date",         null: false
+    t.time     "time",         null: false
+    t.string   "name",         null: false
+    t.string   "email",        null: false
+    t.string   "phone_number", null: false
     t.integer  "client_id"
     t.integer  "staff_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.index ["client_id"], name: "index_appointments_on_client_id", using: :btree
     t.index ["staff_id"], name: "index_appointments_on_staff_id", using: :btree
   end
@@ -90,10 +93,12 @@ ActiveRecord::Schema.define(version: 20170725134312) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.string   "location"
-    t.string   "hours"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",        null: false
+    t.string   "location",    null: false
+    t.string   "hours",       null: false
+    t.string   "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

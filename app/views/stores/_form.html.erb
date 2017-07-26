@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :"Name: " %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
     <%= f.label :"Location: " %>
     <%= f.text_area :location %>
   </div>
@@ -19,6 +24,11 @@
   <div class="field">
     <%= f.label :"Hours: " %>
     <%= f.text_area :hours %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Description: " %>
+    <%= f.text_area :description %>
   </div>
 
   <div class="action">
