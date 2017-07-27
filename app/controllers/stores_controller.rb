@@ -17,6 +17,9 @@ class StoresController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
   end
 
@@ -31,9 +34,6 @@ class StoresController < ApplicationController
   def destroy
     @store.destroy
     redirect_to stores_path
-  end
-
-  def show
   end
 
   private

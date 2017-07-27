@@ -6,8 +6,8 @@ class CreateAppointments < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.string :email, null: false
       t.string :phone_number, null: false
-      t.belongs_to :client
-      t.belongs_to :staff
+      t.integer :staff_id, null: false
+      t.integer :user_id
       t.timestamps
     end
   end

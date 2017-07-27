@@ -1,0 +1,6 @@
+<h1>Staff details</h1>
+<p>Name: <%= @staff.name %></p>
+<p>Phone number: <%= @staff.phone_number %></p>
+<%= link_to "back", store_staffs_path(@store) %>
+<%= link_to "edit", edit_store_staff_path(@store,@staff) %>
+<%= link_to "delete", store_staff_path(@store,@staff), method: :delete, data: { confirm: 'Are you sure?'} %>

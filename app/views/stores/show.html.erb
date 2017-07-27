@@ -4,4 +4,8 @@
 <p><%= @store.description %></p>
 <%= link_to 'Edit', edit_store_path(@store) %>
 <%= link_to 'Delete', @store, data: { confirm: 'Are you sure?', method: :delete } %>
+<br>
+<%= link_to 'View staffs', store_staffs_path(@store) %>
+<%= link_to 'Add staff', new_store_staff_path(@store) %>
+<br>
 <%= link_to 'Back to stores', stores_path %>

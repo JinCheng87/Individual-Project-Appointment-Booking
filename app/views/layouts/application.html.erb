@@ -9,15 +9,7 @@
   </head>
 
   <body>
-    <nav>
-     <% if current_admin %>
-       <p>Hello, <%= current_admin.name %>!
-       <%= link_to 'Logout', destroy_admin_session_path, method: :delete %>
-     <% else %>
-       <%= link_to 'Register', new_admin_registration_path %>
-       <%= link_to 'Login', new_admin_session_path %>
-     <% end %>
-    </nav>
+    
     <%= yield %>
   </body>
 </html>
