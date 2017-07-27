@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  # devise_for :admins, controllers: { sessions: 'admins/sessions',registrations: 'admins/registrations'}
-  # devise_for :clients, controllers: { sessions: 'clients/sessions',registrations: 'clients/registrations' }
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+
   get '/admins', to: 'admins_home#index'
   root to:'home#index'
 
   resources :services
+  resources :appointments
 
   resources :stores do
     resources :staffs
