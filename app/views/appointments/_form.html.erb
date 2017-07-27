@@ -11,5 +11,42 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :name %> 
+    <%= f.text_field :name %> 
+  </div>
 
+  <div class="field">
+    <%= f.label :"phone number" %> 
+    <%= f.text_field :name %> 
+  </div>
+
+  <div class="field">
+    <%= f.label :email %> 
+    <%= f.email_field :email %> 
+  </div>
+
+  <div class="field">
+    <%= f.label :date %> 
+    <%= f.date_field :date %> 
+  </div>
+
+  <div class="field">
+    <%= f.label :time %> 
+    <%= f.time_field :time %> 
+  </div>
+
+  <div class="field">
+    <%= f.label :staff %> 
+    <%= f.text_field :staff_id %> 
+  </div>
+
+  <div class="field">
+    <%= f.label :service %> 
+    <%= f.text_field :service_id %> 
+  </div>
+
+  <div class="action">
+    <%= f.submit %>
+  </div>
 <% end %>

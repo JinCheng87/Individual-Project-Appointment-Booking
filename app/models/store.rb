@@ -1,5 +1,6 @@
 class Store < ApplicationRecord
   has_many :staffs
+  has_many :appointments
 
   validates :name, presence: true
   validates :location, presence: true

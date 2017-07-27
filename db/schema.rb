@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(version: 20170727051032) do
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
+    t.string   "name",         null: false
+    t.string   "phone_number", null: false
+    t.string   "email",        null: false
     t.date     "date",         null: false
     t.time     "time",         null: false
-    t.string   "name",         null: false
-    t.string   "email",        null: false
-    t.string   "phone_number", null: false
     t.integer  "staff_id",     null: false
     t.integer  "user_id"
     t.datetime "created_at",   null: false

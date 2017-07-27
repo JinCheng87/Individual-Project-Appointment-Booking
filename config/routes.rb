@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   root to:'home#index'
 
   resources :services
-  resources :appointments
 
   resources :stores do
+    resources :appointments
     resources :staffs
   end
 end
