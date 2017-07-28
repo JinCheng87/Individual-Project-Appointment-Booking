@@ -1,10 +1,9 @@
 <h1>List of staffs</h1>
-<% if staffs.any? %>
-  <% staffs.each do |staff| %>
-    <%= staff.name %>
+<% if @staffs.any? %>
+  <% @staffs.each do |staff| %>
+    <%= link_to staff.name, store_staff_path(@store,staff) %>
     <%= staff.phone_number %>
-    <%= link_to "edit", edit_store_staff_path(@store, staff) %>
-    <%= link_to "delete", store_staff_path(@store, staff), method: :delete, data: { confirm: 'Are you sure?'} %>
+    <br>
   <% end %>
 <% else %>
   <h3>No staff available</h3>

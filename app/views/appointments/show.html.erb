@@ -5,3 +5,5 @@
 
 <%= link_to 'edit', edit_store_appointment_path(@store,@appointment) %>
 <%= link_to 'cancel appointment', store_appointment_path(@store,@appointment), data: { confirm: 'Are you sure?'}, method: :delete %>
+
+<%= link_to 'back to calendar', store_schedule_path(@store,@appointment.date) %>

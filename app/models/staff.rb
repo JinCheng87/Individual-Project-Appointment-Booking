@@ -3,7 +3,7 @@ class Staff < ApplicationRecord
 
   def available(date, time)
     appointments.each do |appointment|
-      if appointment.date == Date.parse(date) && appointment.time.hour == time
+      if Date.parse(appointment.date.to_s) == Date.parse(date) && appointment.time.hour == time
         return false
       end
     end

@@ -20,6 +20,7 @@ class StaffsController < ApplicationController
   end
 
   def index
+    @staffs = @store.staffs.all
   end
 
   def edit

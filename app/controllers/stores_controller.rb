@@ -1,6 +1,7 @@
 class StoresController < ApplicationController
   before_action :find_store, except: [:new, :create, :index]
   def index
+    @stores = Store.all
   end
 
   def new
