@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to:'home#index'
 
   resources :services
-  
+  get '/stores/:store_id/staffs/:id/appointments', to: 'appointments#staff_appointments', as: 'staff_appointments'
   resources :stores do
     resources :schedule
     resources :appointments

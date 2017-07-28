@@ -1,0 +1,12 @@
+<h1>Appointments for @staff.name</h1>
+<% if @appointments.any? %>
+  <% @appointments.each_with_index do |app,index| %>
+    <%= link_to app.date, store_appointment_path(@store,app) %>
+    <%= app.time %>
+    <%= app.name %>
+    <%= app.phone_number %>
+    <br>
+  <% end %>
+<% else %>
+  <h3>No appointment yet</h3>
+<% end %>

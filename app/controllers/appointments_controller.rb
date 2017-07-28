@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :find_store
-  before_action :find_appointment, except: [:new, :create, :index]
+  before_action :find_appointment, except: [:new, :create, :index, :staff_appointments]
 
   def index
     @appointments = Appointment.all
@@ -26,6 +26,12 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+  end
+
+  def staff_appointments
+    #needs store_id because into individule appointment needs it 
+
+    @appointments = Staff.find(params[:id]).appointments.all
   end
 
   def edit

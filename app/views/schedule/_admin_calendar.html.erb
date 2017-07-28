@@ -9,7 +9,11 @@
     <tr>
       <td><%= time=('%02d' % index +':00')%></td>
         <% @staffs.each do |staff| %>
-        <td><%= link_to staff.available(date, index).to_s, new_store_appointment_path(@store, staff_id: staff.id, time: time, date: date) %></td>
+        <%if staff.available(date, index) %>
+          <td><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, time: time, date: date) %></td>
+        <% else %>
+          <td><%= link_to 'view', staff_appointments_path(@store, staff) %></td>
+        <% end %>
       <% end %>
     </tr>
   <% end %>
