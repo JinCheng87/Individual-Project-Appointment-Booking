@@ -1,0 +1,7 @@
+<h1>Appointment details</h1>
+<p>date: <%= @appointment.date %></p>
+<p>time: <%= @appointment.time %></p>
+<p>appointment with: <%= @appointment.staff.name %></p>
+
+<%= link_to 'edit', edit_store_appointment_path(@store,@appointment) %>
+<%= link_to 'cancel appointment', store_appointment_path(@store,@appointment), data: { confirm: 'Are you sure?'}, method: :delete %>

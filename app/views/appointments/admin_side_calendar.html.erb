@@ -1,0 +1,16 @@
+<table>
+  <tr>
+  <th>time</th>
+  <% @staffs.each do |staff| %>
+    <th><%= staff.name %></th>
+    <% end %>
+  </tr>
+  <% 24.times do |index| %>
+    <tr>
+      <td><%= index %></td>
+        <% @staffs.each do |staff| %>
+        <td><%= staff.available(index) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,8 @@
+<h1>Appointments</h1>
+<% @appointments.each do |app| %>
+  <p>name: <%= app.name %></p>  
+  <p>date: <%= app.date %></p>  
+  <p>time: <%= app.time %></p>  
+  <p>phonenumber: <%= app.phone_number %></p>  
+  <p>staff: <%= app.satff.id %></p>  
+<% end %>
