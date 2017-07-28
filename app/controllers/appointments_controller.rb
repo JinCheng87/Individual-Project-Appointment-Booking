@@ -8,9 +8,10 @@ class AppointmentsController < ApplicationController
   end
 
   def new
+    
     @staffs = @store.staffs.all
     @services = Service.all
-    @appointment = @store.appointments.new
+    @appointment = @store.appointments.new(staff_id: params[:staff_id], time: params[:time], date: params[:date])
   end
 
   def create

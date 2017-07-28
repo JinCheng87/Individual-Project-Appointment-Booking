@@ -2,6 +2,8 @@
 <p>Location: <%= @store.location %></p>
 <p>Hours: <%= @store.hours %></p>
 <p><%= @store.description %></p>
+
+<%= render 'admin_calendar', cal_date: cal_date%>
 <%= link_to 'Edit', edit_store_path(@store) %>
 <%= link_to 'Delete', @store, data: { confirm: 'Are you sure?', method: :delete } %>
 <br>

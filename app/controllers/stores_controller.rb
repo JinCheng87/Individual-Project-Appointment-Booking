@@ -1,7 +1,6 @@
 class StoresController < ApplicationController
   before_action :find_store, except: [:new, :create, :index]
   def index
-    
   end
 
   def new
@@ -19,6 +18,9 @@ class StoresController < ApplicationController
   end
 
   def show
+    cal_date = Date.today
+    @staffs = @store.staffs.all
+    render :show, locals: {cal_date: cal_date}
   end
 
   def edit
