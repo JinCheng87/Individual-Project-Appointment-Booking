@@ -20,8 +20,6 @@ class StaffsController < ApplicationController
   end
 
   def index
-    staffs = @store.staffs.all
-    render :index, locals: { staffs: staffs}
   end
 
   def edit

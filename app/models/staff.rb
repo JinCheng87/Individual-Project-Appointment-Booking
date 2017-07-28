@@ -1,10 +1,9 @@
 class Staff < ApplicationRecord
   has_many :appointments
 
-  def available(time)
-    date = Date.today
+  def available(date, time)
     appointments.each do |appointment|
-      if appointment.date == date && appointment.time.hour == time
+      if appointment.date == Date.parse(date) && appointment.time.hour == time
         return false
       end
     end

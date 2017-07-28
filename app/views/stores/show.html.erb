@@ -3,7 +3,7 @@
 <p>Hours: <%= @store.hours %></p>
 <p><%= @store.description %></p>
 
-<%= render 'admin_calendar', cal_date: cal_date%>
+
 <%= link_to 'Edit', edit_store_path(@store) %>
 <%= link_to 'Delete', @store, data: { confirm: 'Are you sure?', method: :delete } %>
 <br>
@@ -12,3 +12,4 @@
 <%= link_to 'Add staff', new_store_staff_path(@store) %>
 <br>
 <%= link_to 'Back to stores', stores_path %>
+<%= link_to 'View the calendar', store_schedule_path(@store,Date.today) %>

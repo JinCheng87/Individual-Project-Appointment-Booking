@@ -17,10 +17,7 @@ class StoresController < ApplicationController
     end
   end
 
-  def show
-    cal_date = Date.today
-    @staffs = @store.staffs.all
-    render :show, locals: {cal_date: cal_date}
+  def show    
   end
 
   def edit

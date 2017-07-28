@@ -1,0 +1,4 @@
+<h3>Sechdule for <%= date %></h3>
+<%= link_to '<<<', store_schedule_path(@store, Date.parse(date.to_s) - 1) %>
+<%= link_to '>>>', store_schedule_path(@store, Date.parse(date.to_s) + 1) %>
+<%= render 'admin_calendar', date: date%>
