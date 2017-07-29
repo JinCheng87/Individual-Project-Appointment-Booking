@@ -1,4 +1,5 @@
 class Store < ApplicationRecord
+  resourcify
   has_many :staffs
   has_many :appointments
 

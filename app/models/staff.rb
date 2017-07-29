@@ -1,4 +1,5 @@
 class Staff < ApplicationRecord
+  resourcify
   has_many :appointments
 
   def available(date, time)
