@@ -4,23 +4,30 @@ class StoresController < ApplicationController
     @stores = Store.all
   end
 
-  def show    
+  def show 
+    @is_admin = is_admin   
   end
 
   def edit
-  end
-
-  def update
-    if @store.update_attributes(store_params)
-      redirect_to @store
+    authenticate_user!
+    if !is_admin
+      render :'errors/not_found'
     else
       render :edit
     end
   end
 
-  def destroy
-    @store.destroy
-    redirect_to stores_path
+  def update
+    authenticate_user!
+    if !is_admin
+      render :'errors/not_found'
+    else
+      if @store.update_attributes(store_params)
+        redirect_to @store
+      else
+        render :edit
+      end
+    end
   end
 
   private
@@ -31,6 +38,13 @@ class StoresController < ApplicationController
 
   def find_store
     @store = Store.find(params[:id])
+  end
+
+  def is_admin
+    if current_user
+      return true if current_user.has_role? :admin
+    end
+    false
   end
 
 end
