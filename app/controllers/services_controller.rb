@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_action :find_service, except: [:create, :new, :index]
-
+  before_action :authenticate_admin, except: [:show, :index]
   def index
   end
 
@@ -19,6 +19,7 @@ class ServicesController < ApplicationController
   end
 
   def show
+    @is_admin = is_admin
   end
 
   def edit

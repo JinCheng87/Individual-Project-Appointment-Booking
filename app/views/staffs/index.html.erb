@@ -1,12 +1,17 @@
 <h1>List of staffs</h1>
 <% if @staffs.any? %>
   <% @staffs.each do |staff| %>
-    <%= link_to staff.name, store_staff_path(@store,staff) %>
-    <%= staff.phone_number %>
+    <% if @is_admin %>
+      <%= link_to staff.name, store_staff_path(@store,staff) %>
+    <% else %>
+      <%= staff.name %>
+    <% end %>
     <br>
   <% end %>
 <% else %>
   <h3>No staff available</h3>
 <% end %>
 
-<%= link_to 'Add staff', new_store_staff_path(@store) %>
+<% if @is_admin %>
+  <%= link_to 'Add staff', new_store_staff_path(@store) %>
+<% end %>

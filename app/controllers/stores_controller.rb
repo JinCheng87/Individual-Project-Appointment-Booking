@@ -1,5 +1,7 @@
 class StoresController < ApplicationController
   before_action :find_store, except: [:new, :create, :index]
+  before_action :authenticate_admin, only: [:edit, :update] 
+    
   def index
     @stores = Store.all
   end
@@ -9,24 +11,13 @@ class StoresController < ApplicationController
   end
 
   def edit
-    authenticate_user!
-    if !is_admin
-      render :'errors/not_found'
-    else
-      render :edit
-    end
   end
 
   def update
-    authenticate_user!
-    if !is_admin
-      render :'errors/not_found'
+    if @store.update_attributes(store_params)
+      redirect_to @store
     else
-      if @store.update_attributes(store_params)
-        redirect_to @store
-      else
-        render :edit
-      end
+      render :edit
     end
   end
 
@@ -39,13 +30,5 @@ class StoresController < ApplicationController
   def find_store
     @store = Store.find(params[:id])
   end
-
-  def is_admin
-    if current_user
-      return true if current_user.has_role? :admin
-    end
-    false
-  end
-
 end
 

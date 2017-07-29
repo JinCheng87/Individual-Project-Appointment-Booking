@@ -1,10 +1,11 @@
 class StaffsController < ApplicationController
   before_action :find_store
   before_action :find_staff, except: [:new, :create, :index]
+  before_action :authenticate_admin, except: [:show, :index]
 
   def new
-    @staff = Staff.new
-    render :new
+      @staff = Staff.new
+      render :new
   end
 
   def create
@@ -20,6 +21,7 @@ class StaffsController < ApplicationController
   end
 
   def index
+    @is_admin = is_admin
     @staffs = @store.staffs.all
   end
 

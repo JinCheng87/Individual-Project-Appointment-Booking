@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     resources :appointments
     resources :staffs
   end
+
+  get '*unmatched_route', to: 'application#not_found'
 end

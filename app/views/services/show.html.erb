@@ -2,5 +2,7 @@
 <%= @service.name %>
 <%= @service.duration %>
 <%= @service.price %>
+<% if @is_admin %>
 <%= link_to 'edit', edit_service_path(@service) %>
 <%= link_to 'delete', @service, method: :delete, data: {confirm: 'Are you sure?'} %>
+<% end %>

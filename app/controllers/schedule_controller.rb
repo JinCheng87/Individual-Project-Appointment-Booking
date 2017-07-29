@@ -4,5 +4,4 @@ class ScheduleController < ApplicationController
     @staffs = @store.staffs.all
     render :show, locals: {date: params[:id]}
   end
-
 end
