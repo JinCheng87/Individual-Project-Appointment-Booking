@@ -21,8 +21,8 @@ Service.create(name: '30 mins massage', duration: '30mins', price: '100')
 Service.create(name: '60 mins massage', duration: '60mins', price: '200')
 Service.create(name: '90 mins massage', duration: '90mins', price: '300')
 
-user1 = User.create(name: 'Jin', email: 'sw02102@gmail.com', password: '123456', phone_number: '123456')
-user2 = User.create(name: 'Mike', email: 'mike@gmail.com', password: '123456', phone_number: '123456')
+user1 = User.create(name: 'Jin', email: 'sw02102@gmail.com', password: '123456', phone_number: Faker::PhoneNumber.cell_phone)
+user2 = User.create(name: 'Mike', email: 'mike@gmail.com', password: '123456', phone_number: Faker::PhoneNumber.cell_phone)
 user1.add_role :admin
 user1.remove_role :customer
 

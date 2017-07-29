@@ -8,10 +8,13 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    
     @staffs = @store.staffs.all
     @services = Service.all
-    @appointment = @store.appointments.new(staff_id: params[:staff_id], time: params[:time], date: params[:date])
+    if current_user.has_role? :customer
+      @appointment = @store.appointments.new(name: current_user.name, phone_number: current_user.phone_number, email: current_user.email, user_id: current_user.id, staff_id: params[:staff_id], time: params[:time], date: params[:date])
+    else
+      @appointment = @store.appointments.new(staff_id: params[:staff_id], time: params[:time], date: params[:date])
+    end
   end
 
   def create

@@ -1,4 +1,6 @@
 <h1>Appointment details</h1>
+<p>name: <%= @appointment.name %></p>
+<p>phone number: <%= @appointment.phone_number %></p>
 <p>date: <%= @appointment.date %></p>
 <p>time: <%= @appointment.time.strftime('%H:%M') %></p>
 <p>appointment with: <%= @appointment.staff.name %></p>
