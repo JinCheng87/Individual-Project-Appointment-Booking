@@ -29,9 +29,9 @@ class AppointmentsController < ApplicationController
   end
 
   def staff_appointments
-    #needs store_id because into individule appointment needs it 
-
-    @appointments = Staff.find(params[:id]).appointments.all
+    #needs store_id because into individule appointment needs it
+    @staff = Staff.find(params[:id]) 
+    @appointments = @staff.appointments.all
   end
 
   def edit

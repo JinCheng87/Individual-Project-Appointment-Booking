@@ -2,7 +2,7 @@
   <tr>
   <th>time</th>
   <% @staffs.each do |staff| %>
-    <th><%= staff.name %></th>
+    <th><%= link_to staff.name, staff_appointments_path(@store, staff) %></th>
     <% end %>
   </tr>
   <% 24.times do |index| %>
@@ -12,7 +12,7 @@
         <%if staff.available(date, index) %>
           <td><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, time: time, date: date) %></td>
         <% else %>
-          <td><%= link_to 'view', staff_appointments_path(@store, staff) %></td>
+          <td><%= link_to 'view', store_appointment_path(@store, staff.find_appointment(date,time)) %></td>
         <% end %>
       <% end %>
     </tr>

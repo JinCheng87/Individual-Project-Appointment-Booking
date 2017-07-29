@@ -1,10 +1,10 @@
-<h1>Appointments for @staff.name</h1>
+<h1>Appointments for <%= @staff.name %></h1>
 <% if @appointments.any? %>
-  <% @appointments.each_with_index do |app,index| %>
+  <% @appointments.each do |app| %>
     <%= link_to app.date, store_appointment_path(@store,app) %>
-    <%= app.time %>
-    <%= app.name %>
-    <%= app.phone_number %>
+    <%= link_to app.time.strftime('%H:%M'), store_appointment_path(@store,app) %>
+    <%= link_to app.name, store_appointment_path(@store,app) %>
+    <%= link_to app.phone_number, store_appointment_path(@store,app) %>
     <br>
   <% end %>
 <% else %>

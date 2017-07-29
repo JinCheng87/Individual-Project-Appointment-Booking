@@ -2,7 +2,7 @@
 <% @appointments.each do |app| %>
   <p>name: <%= app.name %></p>  
   <p>date: <%= app.date %></p>  
-  <p>time: <%= app.time %></p>  
+  <p>time: <%= app.time.strftime('%H:%M') %></p>  
   <p>phonenumber: <%= app.phone_number %></p>  
   <p>staff: <%= app.staff.id %></p>  
 <% end %>
