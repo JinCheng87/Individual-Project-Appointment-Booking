@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to:'home#index'
 
   resources :services
+  get '/users/appointments', to: 'appointments#customer_appointments', as:'customer_appointments'
   get '/stores/:store_id/staffs/:id/appointments', to: 'appointments#staff_appointments', as: 'staff_appointments'
   get '/stores/:store_id/shedule/:id',to:'schedule#show', as: 'store_schedule'
   resources :stores, except: [:new, :create, :destroy] do

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :appointments
+
   rolify
   after_create :assign_default_role
 

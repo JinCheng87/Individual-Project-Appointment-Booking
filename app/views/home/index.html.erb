@@ -1,1 +1,5 @@
 <h1>Welcome</h1>
+<%= link_to 'stores', stores_path %>
+<% if @is_customer %>
+<%= link_to 'view my appointments', customer_appointments_path %>
+<% end %>
