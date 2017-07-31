@@ -14,9 +14,11 @@ class AppointmentsController < ApplicationController
     if current_user
       if current_user.has_role? :customer
         @appointment = current_user.appointments.new(name: current_user.name, phone_number: current_user.phone_number, email: current_user.email, store_id: @store.id, staff_id: params[:staff_id], date_time: params[:date_time])
+      else
+         @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: params[:date_time])
       end
     else
-        @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: params[:date_time])
+      @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: params[:date_time])
     end
   end
 
@@ -24,7 +26,7 @@ class AppointmentsController < ApplicationController
     @staffs = @store.staffs.all
     @services = Service.all
     @appointment = @store.appointments.new(appointment_params)
-    if @appointment.staff.available_between(@appointment.date_time, @appointment.end_time)
+    if @appointment.staff.available_between(@appointment.date_time, @appointment.endtime)
       if @appointment.save
         redirect_to store_appointment_path(@store,@appointment)
       else
@@ -69,7 +71,7 @@ class AppointmentsController < ApplicationController
 
   def destroy
     @appointment.destroy
-    redirect_to store_appointments_path(@store)
+    redirect_to store_path(@store)
   end
 
   private

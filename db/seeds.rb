@@ -18,9 +18,13 @@ Service.create(name: '120 mins massage', duration: '120', price: '400')
 Store.all.each do |store|
   6.times do
     store.staffs.create(name: Faker::Name.name, phone_number: Faker::PhoneNumber.cell_phone)
-    store.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(DateTime.now + 1, DateTime.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, staff_id:rand(6)+1, service_ids:2 )
-    store.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(DateTime.now - 1, DateTime.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, staff_id:rand(6)+1, service_ids:2 )
   end
+    store.staffs.all.each do |staff|
+      staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(DateTime.now + 1, DateTime.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:2, store_id:staff.store_id )
+      staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(DateTime.now + 1, DateTime.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:1, store_id:staff.store_id )
+
+      staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(DateTime.now + 1, DateTime.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:3, store_id:staff.store_id )
+    end
 end
 
 
