@@ -5,7 +5,6 @@ class AppointmentsController < ApplicationController
   def index
     authenticate_admin
     @appointments = Appointment.all
-
   end
 
   def new
@@ -33,7 +32,7 @@ class AppointmentsController < ApplicationController
         render :new
       end
     else
-      flash[:notice] = 'Time is not available, please select another one'
+      flash[:notice] = 'Not available for this time, please select another one'
       render :new
     end
   end
