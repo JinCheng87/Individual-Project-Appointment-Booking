@@ -21,6 +21,7 @@ class AppointmentsController < ApplicationController
     @staffs = @store.staffs.all
     @services = Service.all
     @appointment = @store.appointments.new(appointment_params)
+    if @appointment.staff.available(params[:date],params[:time].strftime("%M").to_i)
     if @appointment.save
       redirect_to store_appointment_path(@store,@appointment)
     else
@@ -45,10 +46,9 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
-    if is_admin || current_user.id == @appointments.user_id
+    redirect_to '/404' unless is_admin || current_user.id == @appointments.user_id
       @services = Service.all
       @staffs = @store.staffs.all
-    end
   end
 
   def update
@@ -60,6 +60,7 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
+    redirect_to '/404' unless is_admin || current_user.id == @appointment.user_id
     @appointment.destroy
     redirect_to store_appointments_path(@store)
   end

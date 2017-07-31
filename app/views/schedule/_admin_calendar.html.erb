@@ -9,12 +9,24 @@
     <tr>
       <td><%= time=('%02d' % index +':00')%></td>
         <% @staffs.each do |staff| %>
-        <%if staff.available(date, index) %>
+        <%if staff.available(date, index, 0) %>
           <td><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, time: time, date: date) %></td>
         <% else %>
-          <td><%= link_to 'view', store_appointment_path(@store, staff.find_appointment(date,time)) %></td>
+          <td><%= link_to 'view', store_appointment_path(@store, staff.find_appointment(date,time,0)) %></td>
         <% end %>
       <% end %>
     </tr>
+
+    <tr>
+      <td><%= time=('%02d' % index +':30')%></td>
+        <% @staffs.each do |staff| %>
+        <%if staff.available(date, index, 30) %>
+          <td><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, time: time, date: date) %></td>
+        <% else %>
+          <td><%= link_to 'view', store_appointment_path(@store, staff.find_appointment(date,time,30)) %></td>
+        <% end %>
+      <% end %>
+    </tr>
+
   <% end %>
 </table>
