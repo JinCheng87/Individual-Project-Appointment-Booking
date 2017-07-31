@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170729053631) do
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "date_time",    null: false
+    t.datetime "end_time"
     t.string   "name",         null: false
     t.string   "email",        null: false
     t.string   "phone_number", null: false

@@ -21,11 +21,17 @@ class AppointmentsController < ApplicationController
   end
 
   def create
+    @staffs = @store.staffs.all
+    @services = Service.all
     @appointment = @store.appointments.new(appointment_params)
-    # if @appointment.staff.available_between(@appointment.date_time, @appointment.endtime)
-    if @appointment.save
-      redirect_to store_appointment_path(@store,@appointment)
+    if @appointment.staff.available_between(@appointment.date_time, @appointment.end_time)
+      if @appointment.save
+        redirect_to store_appointment_path(@store,@appointment)
+      else
+        render :new
+      end
     else
+      flash[:notice] = 'Time is not available, please select another one'
       render :new
     end
   end
