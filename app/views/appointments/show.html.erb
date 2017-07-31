@@ -1,12 +1,12 @@
 <h1>Appointment details</h1>
 <p>name: <%= @appointment.name %></p>
 <p>phone number: <%= @appointment.phone_number %></p>
-<p>date: <%= @appointment.date %></p>
-<p>time: <%= @appointment.time.strftime('%H:%M') %></p>
+<p>date: <%= @appointment.date_time.strftime('%Y-%m-%d') %></p>
+<p>time: <%= @appointment.date_time.strftime('%H:%M') %></p>
 <p>appointment with: <%= @appointment.staff.name %></p>
 <p>services: <%= @appointment.services.first.name %></p>
 
 <%= link_to 'edit', edit_store_appointment_path(@store,@appointment) %>
 <%= link_to 'cancel appointment', store_appointment_path(@store,@appointment), data: { confirm: 'Are you sure?'}, method: :delete %>
 
-<%= link_to 'back to calendar', store_schedule_path(@store,@appointment.date) %>
+<%= link_to 'back to calendar', store_schedule_path(@store,@appointment.date_time.strftime('%Y-%m-%d')) %>

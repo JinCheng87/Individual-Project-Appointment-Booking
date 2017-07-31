@@ -1,8 +1,7 @@
 <h1>Appointments for <%= @current_user.name %></h1>
 <% if @appointments.any? %>
   <% @appointments.each do |app| %>
-    <%= link_to app.date, store_appointment_path(app.store,app) %>
-    <%= app.time.strftime('%H:%M') %>
+    <%= link_to app.date_time.strftime('%H:%M') , store_appointment_path(app.store,app) %>
     with <%= app.staff.name %>
     at <%= app.store.location %>
     <br>

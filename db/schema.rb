@@ -16,8 +16,7 @@ ActiveRecord::Schema.define(version: 20170729053631) do
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.date     "date",         null: false
-    t.time     "time",         null: false
+    t.datetime "date_time",    null: false
     t.string   "name",         null: false
     t.string   "email",        null: false
     t.string   "phone_number", null: false
@@ -36,13 +35,6 @@ ActiveRecord::Schema.define(version: 20170729053631) do
     t.datetime "updated_at",     null: false
     t.index ["appointment_id"], name: "index_appointments_services_on_appointment_id", using: :btree
     t.index ["service_id"], name: "index_appointments_services_on_service_id", using: :btree
-  end
-
-  create_table "clients", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.string   "phone_number", null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
   end
 
   create_table "roles", force: :cascade do |t|
