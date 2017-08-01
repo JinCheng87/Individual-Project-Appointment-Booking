@@ -1,5 +1,5 @@
-<table>
-  <tr>
+<table class="table table-hover">
+  <tr class="info">
   <th>time</th>
   <% @staffs.each do |staff| %>
     <th><%= link_to staff.name, staff_appointments_path(@store, staff) %></th>
@@ -7,23 +7,23 @@
   </tr>
   <% 24.times do |index| %>
     <tr>
-      <td><%= time=('%02d' % index +':00')%></td>
+      <td class="info"><%= time=('%02d' % index +':00')%></td>
         <% @staffs.each do |staff| %>
         <%if staff.available(date, index, 0) %>
-          <td><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: DateTime.parse("#{date}+ #{time}")) %></td>
+          <td class="table-success"><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: DateTime.parse("#{date}+ #{time}")) %></td>
         <% else %>
-          <td><%= link_to 'view', store_appointment_path(@store, staff.find_appointment(date,time)) %></td>
+          <td class="table-danger"><%= link_to 'view', store_appointment_path(@store, staff.find_appointment(date,time)) %></td>
         <% end %>
       <% end %>
     </tr>
 
     <tr>
-      <td><%= time=('%02d' % index +':30')%></td>
+      <td class="info"><%= time=('%02d' % index +':30')%></td>
         <% @staffs.each do |staff| %>
         <%if staff.available(date, index, 30) %>
-          <td><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: DateTime.parse("#{date}+ #{time}")) %></td>
+          <td class="table-success"><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: DateTime.parse("#{date}+ #{time}")) %></td>
         <% else %>
-          <td><%= link_to 'view', store_appointment_path(@store, staff.find_appointment(date,time)) %></td>
+          <td class="table-danger"><%= link_to 'view', store_appointment_path(@store, staff.find_appointment(date,time)) %></td>
         <% end %>
       <% end %>
     </tr>

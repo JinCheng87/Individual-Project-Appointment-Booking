@@ -1,5 +1,35 @@
-<h1>Welcome</h1>
-<%= link_to 'stores', stores_path %>
-<% if @is_customer %>
-<%= link_to 'view my appointments', customer_appointments_path %>
-<% end %>
+
+<div class="container stores">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4">
+      <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="240" height="240">
+      <br>
+      <br>
+      <p><%= @store1.location %></p>
+      <br>
+      <p><%= @store1.description %></p>
+      <br>
+      <p><a class="btn btn-default" href="/stores/1" role="button">Go to store &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4 col-md-4 col-sm-4">
+      <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="240" height="240">
+      <br>
+      <br>
+      <p><%= @store2.location %></p>
+      <br>
+      <p><%= @store2.description %></p>
+      <br>
+      <p><a class="btn btn-default" href="/stores/2" role="button">Go to store &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4 col-md-4 col-sm-4">
+      <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="240" height="240">
+      <br>
+      <br>
+      <p><%= @store3.location %></p>
+      <br>
+      <p><%= @store3.description %></p>
+      <br>
+      <p><a class="btn btn-default" href="stores/3" role="button">Go to store &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
+</div>

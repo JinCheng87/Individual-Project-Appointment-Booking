@@ -2,15 +2,16 @@
 <p>Location: <%= @store.location %></p>
 <p>Hours: <%= @store.hours %></p>
 <p><%= @store.description %></p>
-
-<% if @is_admin %>
-  <%= link_to 'Edit', edit_store_path(@store) %>
-  <%= link_to 'Delete', @store, data: { confirm: 'Are you sure?', method: :delete } %>
-  <%= link_to 'View the calendar', store_schedule_path(@store,Date.today) %>
-  <%= link_to 'Add staff', new_store_staff_path(@store) %>
-<% end %>
-<br>
-<%= link_to 'View staffs', store_staffs_path(@store) %>
-<%= link_to 'Make a reservation', new_store_appointment_path(@store) %>
-<%= link_to 'Back to stores', stores_path %>
-<br>
+<div id="options">
+  <% if @is_admin %>
+    <%= link_to 'Edit', edit_store_path(@store) %>
+    <%= link_to 'Delete', @store, data: { confirm: 'Are you sure?', method: :delete } %>
+    <%= link_to 'View the calendar', store_schedule_path(@store,Date.today) %>
+    <%= link_to 'Add staff', new_store_staff_path(@store) %>
+  <% end %>
+  <br>
+  <%= link_to 'View staffs', store_staffs_path(@store) %>
+  <%= link_to 'Make a reservation', new_store_appointment_path(@store) %>
+  <%= link_to 'Back to stores', stores_path %>
+  <br>
+</div>

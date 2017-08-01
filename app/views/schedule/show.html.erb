@@ -1,4 +1,11 @@
+  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+    <%= link_to "<<<#{Date.parse(date.to_s) - 1}", store_schedule_path(@store, Date.parse(date.to_s) - 1) %>
+  </div>  
 <h3>Sechdule for <%= date %></h3>
-<%= link_to '<<<', store_schedule_path(@store, Date.parse(date.to_s) - 1) %>
-<%= link_to '>>>', store_schedule_path(@store, Date.parse(date.to_s) + 1) %>
+
+  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+    <%= link_to "#{Date.parse(date.to_s) + 1}>>>", store_schedule_path(@store, Date.parse(date.to_s) + 1) %>
+
+  
+</div>
 <%= render 'admin_calendar', date: date%>
