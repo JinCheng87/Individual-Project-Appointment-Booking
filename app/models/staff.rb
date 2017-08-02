@@ -19,8 +19,7 @@ class Staff < ApplicationRecord
 
   def available_between(start_time, end_time)
     appointments.each do |appointment|
-      return false if appointment.date_time.between?(start_time,end_time)
-binding.pry
+      return false if appointment.date_time.between?(start_time, end_time) || appointment.end_time.between?(start_time, end_time)
     end
     true
   end
