@@ -49,11 +49,13 @@ ActiveRecord::Schema.define(version: 20170729053631) do
   end
 
   create_table "services", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "duration",   null: false
-    t.float    "price",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",        null: false
+    t.string   "duration",    null: false
+    t.string   "category",    null: false
+    t.float    "price",       null: false
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "staffs", force: :cascade do |t|

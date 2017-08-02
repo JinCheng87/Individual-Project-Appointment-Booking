@@ -2,22 +2,18 @@ class AppointmentsController < ApplicationController
   before_action :find_store, except: [:customer_appointments]
   before_action :find_appointment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_current_user, only: [:edit, :destroy, :update]
-  def index
-    authenticate_admin
-    @appointments = Appointment.all
-  end
 
   def new
     @staffs = @store.staffs.all
     @services = Service.all
     if current_user
       if current_user.has_role? :customer
-        @appointment = current_user.appointments.new(name: current_user.name, phone_number: current_user.phone_number, email: current_user.email, store_id: @store.id, staff_id: params[:staff_id], date_time: params[:date_time])
+        @appointment = current_user.appointments.new(name: current_user.name, phone_number: current_user.phone_number, email: current_user.email, store_id: @store.id, staff_id: params[:staff_id], date_time: DateTime.now)
       else
          @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: params[:date_time])
       end
     else
-      @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: params[:date_time])
+      @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: DateTime.now)
     end
   end
 

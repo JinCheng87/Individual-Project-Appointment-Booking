@@ -1,0 +1,24 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<h1 class="page-header ">Services</h1>
+<% if @services.any? %>
+  <table class="table table-hover">
+      <tr>
+        <th>name</td>
+        <th>duration</td>
+        <th>price</td>
+      </tr>
+    <% @services.each do |service| %>
+      <tr>
+        <td><%= link_to service.name, service_path(service) %></td>  
+        <td><%= service.duration %></td>  
+        <td><%= service.price %></td>  
+      </tr>
+    <% end %>
+    
+  </table>
+<% else %>
+  <h3>No service yet</h3>
+<% end %>
+<% if @is_admin %>
+  <%= link_to 'Add service', new_service_path %>
+<% end %>

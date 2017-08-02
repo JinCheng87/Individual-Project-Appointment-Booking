@@ -2,6 +2,7 @@ class ServicesController < ApplicationController
   before_action :find_service, except: [:create, :new, :index]
   before_action :authenticate_admin, except: [:show, :index]
   def index
+    @services = Service.all
   end
 
   def new

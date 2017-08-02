@@ -1,8 +1,8 @@
 <h1>service detail</h1>
-<%= @service.name %>
-<%= @service.duration %>
-<%= @service.price %>
-<% if @is_admin %>
+<p><%= @service.name %></p>
+<p><%= @service.duration %></p>
+<p><%= @service.price %></p>
+<p><% if @is_admin %></p>
 <%= link_to 'edit', edit_service_path(@service) %>
 <%= link_to 'delete', @service, method: :delete, data: {confirm: 'Are you sure?'} %>
 <% end %>

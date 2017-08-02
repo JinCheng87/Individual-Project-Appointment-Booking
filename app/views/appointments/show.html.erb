@@ -1,13 +1,20 @@
 <h1>Appointment details</h1>
-<p>name: <%= @appointment.name %></p>
-<p>phone number: <%= @appointment.phone_number %></p>
-<p>date: <%= @appointment.date_time.strftime('%Y-%m-%d') %></p>
-<p>start time: <%= @appointment.date_time.strftime('%H:%M') %></p>
-<p>end time: <%= @appointment.end_time.strftime('%H:%M') %></p>
-<p>appointment with: <%= @appointment.staff.name %></p>
-<p>services: <%= @appointment.services.first.name %></p>
+  <div>
+    <table class="table table-striped">
+      <tr><td><p>Name: <%= @appointment.name %></p></td></tr>
+      <tr><td><p>Phone number: <%= @appointment.phone_number %></p></td></tr>
+      <tr><td><p>Date: <%= @appointment.date_time.strftime('%Y-%m-%d') %></p></td></tr>
+      <tr><td><p>Start time: <%= @appointment.date_time.strftime('%H:%M') %></p></td></tr>
+      <tr><td><p>End time: <%= @appointment.end_time.strftime('%H:%M') %></p></td></tr>
+      <tr><td><p>Appointment with: <%= @appointment.staff.name %></p></td></tr>
+      <tr><td><p>Services: <%= @appointment.services.first.name %></p></td></tr>
+    </table>
+  </div>
+<div id="options">
+  <%= link_to 'Edit', edit_store_appointment_path(@store,@appointment) %>
+  <%= link_to 'Cancel appointment', store_appointment_path(@store,@appointment), data: { confirm: 'Are you sure?'}, method: :delete %>
 
-<%= link_to 'edit', edit_store_appointment_path(@store,@appointment) %>
-<%= link_to 'cancel appointment', store_appointment_path(@store,@appointment), data: { confirm: 'Are you sure?'}, method: :delete %>
-
-<%= link_to 'back to calendar', store_schedule_path(@store,@appointment.date_time.strftime('%Y-%m-%d')) %>
+  <% if @is_admin %>
+    <%= link_to 'Back to calendar', store_schedule_path(@store,@appointment.date_time.strftime('%Y-%m-%d')) %>
+  <% end %>
+</div>

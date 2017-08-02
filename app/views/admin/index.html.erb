@@ -1,0 +1,40 @@
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main">
+<h1 class="page-header col-md-offset-3">Calendar</h1>
+
+  <div class="container stores">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <%= image_tag("store.jpg", size:"200", class:"img-circle") %>
+        <br>
+        <br>
+        <p><%= @store1.location %></p>
+        <br>
+        <p><%= @store1.description %></p>
+        <br>
+        <p><%= button_to "view calendar", store_schedule_path(@store1, Date.today),method: :get, class:"btn btn-default center-block" %></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <%= image_tag("store.jpg", size:"200", class:"img-circle") %>
+        <br>
+        <br>
+        <p><%= @store2.location %></p>
+        <br>
+        <p><%= @store2.description %></p>
+        <br>
+        <p><%= button_to "view calendar", store_schedule_path(@store2, Date.today),method: :get, class:"btn btn-default center-block" %></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <%= image_tag("store.jpg", size:"200", class:"img-circle") %>
+        <br>
+        <br>
+        <p><%= @store3.location %></p>
+        <br>
+        <p><%= @store3.description %></p>
+        <br>
+        <p><%= button_to "view calendar", store_schedule_path(@store3, Date.today),method: :get, class:"btn btn-default center-block" %></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+  </div>
+  </div>
+

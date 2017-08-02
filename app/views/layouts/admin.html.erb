@@ -47,7 +47,39 @@
     <br>
     <br>
       <div><%= flash[:notice] %></div>
-      <%= yield %>
+
+        <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                  <ul class="nav nav-sidebar">
+                    <li class="active"><a href="/admin">Calendar <span class="sr-only">(current)</span></a></li>
+                    <li><%= link_to 'Appointments', show_appointments_path %></li>
+                    <li><%= link_to 'Empolyees', show_empolyees_path %></li>
+                    <li><%= link_to 'Stores', show_stores_path %></li>
+                    <li><%= link_to 'Services', show_services_path %></li>
+                  </ul>
+                </div>
+
+        <%= yield %>
+
+            </div>
+          </div>
+        </div>
+
+
+
     </div>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
