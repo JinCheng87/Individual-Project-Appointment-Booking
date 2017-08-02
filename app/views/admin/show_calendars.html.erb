@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active"><a href="/admin">Calendar <span class="sr-only">(current)</span></a></li>
+        <li><%= link_to 'Appointments', show_appointments_path %></li>
+        <li><%= link_to 'Empolyees', show_empolyees_path %></li>
+        <li><%= link_to 'Stores', show_stores_path %></li>
+        <li><%= link_to 'Services', show_services_path %></li>
+      </ul>
+    </div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<h1 class="page-header col-md-offset-1">Sechdule for <%= date %></h1>
+
+  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+    <%= link_to "<<<#{Date.parse(date.to_s) - 1}", store_schedule_path(@store, Date.parse(date.to_s) - 1) %>
+  </div>  
+
+  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+    <%= link_to "#{Date.parse(date.to_s) + 1}>>>", store_schedule_path(@store, Date.parse(date.to_s) + 1) %>
+
+  
+</div>
+<%= render 'admin_calendar', date: date%>
+
+</div>
+</div>
+</div>
+</div>

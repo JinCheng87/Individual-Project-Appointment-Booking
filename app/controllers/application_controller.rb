@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
     redirect_to '/404'
   end
 
+
+
   def is_admin
     if current_user
       return true if current_user.has_role? :admin

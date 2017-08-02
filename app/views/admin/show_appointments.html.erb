@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li><a href="/admin">Calendar <span class="sr-only">(current)</span></a></li>
+        <li class="active"><%= link_to 'Appointments', show_appointments_path %></li>
+        <li><%= link_to 'Empolyees', show_empolyees_path %></li>
+        <li><%= link_to 'Stores', show_stores_path %></li>
+        <li><%= link_to 'Services', show_services_path %></li>
+      </ul>
+    </div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<h1 class="page-header ">Appointments</h1>
+<% @appointments_array.each_with_index do |store_appointments,index| %>
+   <h3>Upcomming appointments for store # <%= index+1 %> </h3>
+  <table class="table table-hover">
+  <% if store_appointments.any? %>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Phone number</th>
+      <th>Appointment with</th>
+    </tr>
+    <% store_appointments.each do |app| %>
+      <tr>
+        <td>
+          <p><%= link_to app.name, store_appointment_path(app.store_id,app) %></p> 
+        </td>
+        <td>
+          <p><%= link_to app.date_time.strftime('%Y-%m-%d'), store_appointment_path(app.store_id,app) %></p>
+        </td>
+        <td>
+           <p><%= app.date_time.strftime('%H:%M') %></p>
+        </td>
+        <td>
+          <p><%= app.end_time.strftime('%H:%M') %></p> 
+        </td>
+        <td>
+          <p><%= app.phone_number %></p> 
+        </td>
+        <td>
+          <p><%= Staff.find_by(id: app.staff_id).name %></p>
+        </td>
+      </tr>
+      <% end %>
+      <% else %>
+      <h3>no appointment yet</h3>
+    <% end %>
+  </table>
+<% end %>
+</div>
+</div>

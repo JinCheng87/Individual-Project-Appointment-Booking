@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          <li><a href="/admin">Calendar <span class="sr-only">(current)</span></a></li>
+          <li><%= link_to 'Appointments', show_appointments_path %></li>
+          <li class="active"><%= link_to 'Empolyees', show_empolyees_path %></li>
+          <li><%= link_to 'Stores', show_stores_path %></li>
+          <li><%= link_to 'Services', show_services_path %></li>
+        </ul>
+      </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header ">Empolyees</h1>
+      <% @stores.each_with_index do |store,index| %>
+        <h3 class="col-sm-9 col-md-offset-1">Empolyees In Store #<%= index+1 %></h3>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Name</td>
+            <th>Phone number</td>
+            <th>Edit</td>
+            <th>Delete</td>
+          </tr>
+        </thead>
+        <% store.staffs.all.each do |staff| %>
+        <tr>
+          <td><p><%= link_to staff.name, store_staff_path(staff.store_id,staff) %></p></td>
+          <td><p><%= staff.phone_number %></p></td>
+          <td><p><%= link_to 'Edit',edit_store_staff_path(staff.store_id,staff) %></p></td>
+          <td><p><%= link_to 'Delete', store_staff_path(staff.store_id,staff), method: :delete, data: { confirm: 'Are you sure?'} %></p></td>
+        </tr>
+      <% end %>
+      </table>
+    <% end %>
+    </div>
+  </div>
+</div>

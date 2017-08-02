@@ -2,22 +2,18 @@ class AppointmentsController < ApplicationController
   before_action :find_store, except: [:customer_appointments]
   before_action :find_appointment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_current_user, only: [:edit, :destroy, :update]
-  def index
-    authenticate_admin
-    @appointments = Appointment.all
-  end
 
   def new
     @staffs = @store.staffs.all
     @services = Service.all
     if current_user
       if current_user.has_role? :customer
-        @appointment = current_user.appointments.new(name: current_user.name, phone_number: current_user.phone_number, email: current_user.email, store_id: @store.id, staff_id: params[:staff_id], date_time: params[:date_time])
+        @appointment = current_user.appointments.new(name: current_user.name, phone_number: current_user.phone_number, email: current_user.email, store_id: @store.id, staff_id: params[:staff_id], date_time: DateTime.now)
       else
          @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: params[:date_time])
       end
     else
-      @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: params[:date_time])
+      @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: DateTime.now)
     end
   end
 
@@ -38,6 +34,7 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+    @is_admin = current_user.has_role? :admin if current_user
   end
 
   def staff_appointments
@@ -54,7 +51,7 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
-    redirect_to '/404' unless is_admin || current_user.id == @appointments.user_id
+    redirect_to '/404' unless is_admin || current_user.id == @appointment.user_id
       @services = Service.all
       @staffs = @store.staffs.all
   end
@@ -85,7 +82,7 @@ class AppointmentsController < ApplicationController
   def appointment_params
     app_params = params.require(:appointment).permit(:date_time, :name, :email, :phone_number, :staff_id, :user_id, :store_id, :service_ids)
     if current_user
-      app_params.merge(user_id: current_user.id) if current_user.has_role? :customer
+      app_params.merge!(user_id: current_user.id) if current_user.has_role? :customer
     end
     app_params
   end

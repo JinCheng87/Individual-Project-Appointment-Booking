@@ -1,17 +1,27 @@
 <h1>List of staffs</h1>
 <% if @staffs.any? %>
-  <% @staffs.each do |staff| %>
-    <% if @is_admin %>
-      <%= link_to staff.name, store_staff_path(@store,staff) %>
-    <% else %>
-      <%= staff.name %>
-    <% end %>
-    <br>
+    <div class="row">
+      <% @staffs.each do |staff| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+        <%= image_tag("female.png",size:"200") %>
+          <div class="caption">
+            <h3><%= staff.name %></h3>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
+            <% if @is_admin %>
+              <p><a href="/stores/<%= @store.id %>/staffs/<%= staff.id %>" class="btn btn-primary" role="button">View</a> <a href="/stores/<%= @store.id %>/staffs/<%= staff.id %>/edit" class="btn btn-default" role="button">Edit</a></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
   <% end %>
+    </div>
 <% else %>
   <h3>No staff available</h3>
 <% end %>
 
 <% if @is_admin %>
-  <%= link_to 'Add staff', new_store_staff_path(@store) %>
+  <%= button_to 'Add Employee', new_store_staff_path(@store),method: :get, class:"btn btn-warning center-block" %>
 <% end %>
+
+

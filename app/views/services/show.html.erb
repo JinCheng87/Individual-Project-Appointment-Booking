@@ -1,8 +1,14 @@
 <h1>service detail</h1>
-<%= @service.name %>
-<%= @service.duration %>
-<%= @service.price %>
-<% if @is_admin %>
-<%= link_to 'edit', edit_service_path(@service) %>
-<%= link_to 'delete', @service, method: :delete, data: {confirm: 'Are you sure?'} %>
+<table class="table table-hover">
+  <tr><td><p>name: <%= @service.name %></p></td></tr>
+  <tr><td><p>duration: <%= @service.duration %></p></td></tr>
+  <tr><td><p>price: $<%= @service.price %></p></td></tr>
+  <tr><td><p>description: <%= @service.description %></p></td></tr>
+  
+</table>
+
+<p><% if @is_admin %></p>
+<p><%= button_to 'edit', edit_service_path(@service), method: :get , class:"btn btn-primary center-block"%>
+<br>
+<%= button_to 'delete', @service, method: :delete, data: {confirm: 'Are you sure?'}, class:"btn btn-primary center-block"%></p> 
 <% end %>

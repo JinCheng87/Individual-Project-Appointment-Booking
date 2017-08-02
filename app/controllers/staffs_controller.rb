@@ -38,7 +38,7 @@ class StaffsController < ApplicationController
 
   def destroy
     @staff.destroy
-    redirect_to store_staffs_path(@store)
+    redirect_to show_empolyees_path
   end
 
   private

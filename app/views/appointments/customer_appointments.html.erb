@@ -1,11 +1,49 @@
-<h1>Appointments for <%= @current_user.name %></h1>
-<% if @appointments.any? %>
-  <% @appointments.each do |app| %>
-    <%= link_to app.date_time.strftime('%H:%M') , store_appointment_path(app.store,app) %>
-    with <%= app.staff.name %>
-    at <%= app.store.location %>
-    <br>
-  <% end %>
-<% else %>
-  <h3>No appointment yet</h3>
-<% end %>
+<h1 class="page-header">Appointments for <%= @current_user.name %></h1>
+
+
+
+
+<table class="table table-hover">
+  <% if @appointments.any? %>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Phone number</th>
+      <th>Appointment with</th>
+      <th>Edit</th>
+      <th>Cancel</th>
+    </tr>
+    <% @appointments.each do |app| %>
+      <tr>
+        <td>
+          <p><%= link_to app.name, store_appointment_path(app.store_id,app) %></p> 
+        </td>
+        <td>
+          <p><%= link_to app.date_time.strftime('%Y-%m-%d'), store_appointment_path(app.store_id,app) %></p>
+        </td>
+        <td>
+           <p><%= app.date_time.strftime('%H:%M') %></p>
+        </td>
+        <td>
+          <p><%= app.end_time.strftime('%H:%M') %></p> 
+        </td>
+        <td>
+          <p><%= app.phone_number %></p> 
+        </td>
+        <td>
+          <p><%= Staff.find_by(id: app.staff_id).name %></p>
+        </td>
+        <td>
+          <p><%= link_to 'Edit', edit_store_appointment_path(app.store_id, app) %></p>
+        </td>
+        <td>
+          <p><%= link_to 'Delete',store_appointment_path(app.store_id, app),method: :delete, data: {confirm: "Are you sure?"} %></p>
+        </td>
+      </tr>
+      <% end %>
+      <% else %>
+      <h3>no appointment yet</h3>
+    <% end %>
+  </table>
