@@ -5,8 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-4.times do 
-  Store.create(name: Faker::Company.name, location: Faker::Address.street_address, hours: "7/24", description: "very good place!")
+Store.create(name: Faker::Company.name, location: "418 7th Ave Brooklyn" + "\n" + "NY 11215" + "\n" +
+  "Tel:(718)369-8988", hours: '10AM-10PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.")
+2.times do 
+  Store.create(name: Faker::Company.name, location: "#{Faker::Address.street_address}
+    #{ Faker::Address.city},#{ Faker::Address.state} #{Faker::Address.zip}", hours: '9AM-9PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.")
 end
 
 Service.create(name: 'Basic Facial(For men, women and teens)', duration: '60', price: '50',description: 'cleansing, peeling, steam, eyebrows shaping, facial massage, remove blackhead, high frequency treatment, eye mask, cold mask', category: 'facial treatment')
@@ -51,10 +54,6 @@ Store.all.each do |store|
     end
 end
 
-
-# Appointment.all.each do |app|
-#   app.services << Service.all[rand(5)]
-# end
 
 user1 = User.create(name: 'Jin', email: 'sw02102@gmail.com', password: '123456', phone_number: Faker::PhoneNumber.cell_phone)
 user2 = User.create(name: 'Mike', email: 'mike@gmail.com', password: '123456', phone_number: Faker::PhoneNumber.cell_phone)

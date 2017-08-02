@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170729053631) do
     t.string   "phone_number", null: false
     t.integer  "staff_id",     null: false
     t.integer  "user_id"
-    t.integer  "store_id"
+    t.integer  "store_id",     null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["store_id"], name: "index_appointments_on_store_id", using: :btree
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20170729053631) do
   create_table "staffs", force: :cascade do |t|
     t.string   "name",         null: false
     t.string   "phone_number", null: false
-    t.integer  "store_id"
+    t.integer  "store_id",     null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["store_id"], name: "index_staffs_on_store_id", using: :btree

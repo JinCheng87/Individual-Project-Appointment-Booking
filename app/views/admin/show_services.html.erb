@@ -1,24 +1,41 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-<h1 class="page-header ">Services</h1>
-<% if @services.any? %>
-  <table class="table table-hover">
-      <tr>
-        <th>name</td>
-        <th>duration</td>
-        <th>price</td>
-      </tr>
-    <% @services.each do |service| %>
-      <tr>
-        <td><%= link_to service.name, service_path(service) %></td>  
-        <td><%= service.duration %></td>  
-        <td><%= service.price %></td>  
-      </tr>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          <li><a href="/admin">Calendar <span class="sr-only">(current)</span></a></li>
+          <li><%= link_to 'Appointments', show_appointments_path %></li>
+          <li><%= link_to 'Empolyees', show_empolyees_path %></li>
+          <li><%= link_to 'Stores', show_stores_path %></li>
+          <li class="active"><%= link_to 'Services', show_services_path %></li>
+        </ul>
+      </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header ">Services</h1>
+    <% if @services.any? %>
+      <table class="table table-hover">
+          <tr>
+            <th>name</td>
+            <th>duration</td>
+            <th>price</td>
+            <th>edit</td>
+            <th>delete</td>
+          </tr>
+        <% @services.each do |service| %>
+          <tr>
+            <td><%= link_to service.name, service_path(service) %></td>  
+            <td><p><%= service.duration %> minutes</p></td>  
+            <td><p>$<%= service.price %></p></td>  
+            <td><p><%= link_to 'edit', edit_service_path(service) %></p></td>  
+            <td><p><%= link_to 'delete', service,method: :delete, data: {confirm:'Are you sure?'} %></p></td>  
+          </tr>
+        <% end %>
+        
+      </table>
+    <% else %>
+      <h3>No service yet</h3>
     <% end %>
-    
-  </table>
-<% else %>
-  <h3>No service yet</h3>
-<% end %>
-<% if @is_admin %>
-  <%= link_to 'Add service', new_service_path %>
-<% end %>
+    <% if @is_admin %>
+      <%= link_to 'Add service', new_service_path %>
+    <% end %>
+  </div>
+</div>

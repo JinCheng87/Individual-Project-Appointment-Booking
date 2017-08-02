@@ -22,6 +22,7 @@ class AppointmentsController < ApplicationController
     @services = Service.all
     @appointment = @store.appointments.new(appointment_params)
     if @appointment.staff.available_between(@appointment.date_time, @appointment.endtime)
+binding.pry
       if @appointment.save
         redirect_to store_appointment_path(@store,@appointment)
       else
@@ -34,6 +35,7 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+    @is_admin = current_user.has_role? :admin if current_user
   end
 
   def staff_appointments
@@ -50,7 +52,7 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
-    redirect_to '/404' unless is_admin || current_user.id == @appointments.user_id
+    redirect_to '/404' unless is_admin || current_user.id == @appointment.user_id
       @services = Service.all
       @staffs = @store.staffs.all
   end
@@ -81,7 +83,7 @@ class AppointmentsController < ApplicationController
   def appointment_params
     app_params = params.require(:appointment).permit(:date_time, :name, :email, :phone_number, :staff_id, :user_id, :store_id, :service_ids)
     if current_user
-      app_params.merge(user_id: current_user.id) if current_user.has_role? :customer
+      app_params.merge!(user_id: current_user.id) if current_user.has_role? :customer
     end
     app_params
   end

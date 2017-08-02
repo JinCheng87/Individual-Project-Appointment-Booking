@@ -1,6 +1,9 @@
 class Staff < ApplicationRecord
   resourcify
   has_many :appointments
+  validates :name, presence: true
+  validates :phone_number, presence: true
+  validates :store_id, presence: true
 
   def available(date, hour, minute)
     calendar_date = DateTime.parse("#{date}+ #{hour.to_s}:#{minute.to_s}")
@@ -17,6 +20,7 @@ class Staff < ApplicationRecord
   def available_between(start_time, end_time)
     appointments.each do |appointment|
       return false if appointment.date_time.between?(start_time,end_time)
+binding.pry
     end
     true
   end

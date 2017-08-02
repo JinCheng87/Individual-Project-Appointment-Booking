@@ -216,5 +216,9 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
-
-
+.nav-sidebar > .active > a:hover, .nav-sidebar > .active > a {
+    background-color: rgba(140, 127, 127, 0.26);
+}
+.nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
+    background-color: rgba(140, 127, 127, 0.26);
+}

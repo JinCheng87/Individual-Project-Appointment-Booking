@@ -1,10 +1,7 @@
 class AdminController < ApplicationController
-    layout "admin"
   def index
     authenticate_admin
-    @store1 = Store.all[0]
-    @store2 = Store.all[1]
-    @store3 = Store.all[2]
+    @stores = Store.all
     @store = Store.find_by(id: params[:store_id])
   end
 
