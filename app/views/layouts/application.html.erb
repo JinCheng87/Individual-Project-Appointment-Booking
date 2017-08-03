@@ -62,7 +62,10 @@
     <div class="container">
     <br>
     <br>
-      <div><%= flash[:notice] %></div>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: "alert alert-warning text-center" %>
+      <% end %>
+
       <%= yield %>
     </div>
   </body>

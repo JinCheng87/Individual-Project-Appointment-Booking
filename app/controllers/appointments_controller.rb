@@ -22,13 +22,18 @@ class AppointmentsController < ApplicationController
     @services = Service.all
     @appointment = @store.appointments.new(appointment_params)
     if @appointment.staff.available_between(@appointment.date_time, @appointment.endtime)
+      if @appointment.date_time < DateTime.now
+        flash.now[:notice] = "So you wanna make a reservation for the past?"
+        render :new
+        return
+      end
       if @appointment.save
         redirect_to store_appointment_path(@store,@appointment), notice: 'Appointment created successfully'
       else
         render :new
       end
     else
-      flash[:notice] = 'Not available for this time, please select another one'
+      flash.now[:notice]= "#{@appointment.staff.name} is not available in this time, please select another session"
       render :new
     end
   end
