@@ -31,13 +31,21 @@
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             <li><%= link_to 'Services', services_path %></li>
+            <% if current_user %>
+              <% if current_user.has_role? :admin %>
+              <li><%= link_to 'Reservation', show_appointments_path %></li>
+              <% else %>
             <li><%= link_to 'Reservation', new_store_appointment_path(Store.first) %></li>
+              <% end %>
+            <% else %>
+            <li><%= link_to 'Reservation', new_store_appointment_path(Store.first) %></li>
+            <% end %>
             <li><%= link_to 'Staffs',store_staffs_path(Store.first) %></li>
             <li><a href="#Direction">Direction</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
-              <% if @is_admin %>
+              <% if current_user.has_role? :admin %>
                 <li> <%=link_to "Hello, #{current_user.name} !",admin_path %></li>
                 <li> <%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
                 <% else %>
