@@ -23,7 +23,7 @@ class AppointmentsController < ApplicationController
     @appointment = @store.appointments.new(appointment_params)
     if @appointment.staff.available_between(@appointment.date_time, @appointment.endtime)
       if @appointment.save
-        redirect_to store_appointment_path(@store,@appointment)
+        redirect_to store_appointment_path(@store,@appointment), notice: 'Appointment created successfully'
       else
         render :new
       end
@@ -59,7 +59,7 @@ class AppointmentsController < ApplicationController
   def update
     redirect_to '/404' unless is_admin || current_user.id == @appointment.user_id
     if @appointment.update_attributes(appointment_params)
-      redirect_to store_appointment_path(@store,@appointment)
+      redirect_to store_appointment_path(@store,@appointment), notice: 'Appointment updated successfully'
     else
       render :edit
     end
@@ -67,7 +67,7 @@ class AppointmentsController < ApplicationController
 
   def destroy
     @appointment.destroy
-    redirect_to store_path(@store)
+    redirect_to store_path(@store), notice: 'Appointment cancelled successfully'
   end
 
   private

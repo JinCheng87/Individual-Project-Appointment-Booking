@@ -13,7 +13,7 @@ class ServicesController < ApplicationController
   def create
     @service = Service.new(service_params)
     if @service.save
-      redirect_to @service
+      redirect_to @service, notice: 'service created successfully'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class ServicesController < ApplicationController
 
   def update
     if @service.update_attributes(service_params)
-      redirect_to @service
+      redirect_to @service, notice: 'service updated successfully'
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class ServicesController < ApplicationController
 
   def destroy
     @service.destroy
-    redirect_to services_path
+    redirect_to services_path, notice: 'service deleted successfully'
   end
 
   private

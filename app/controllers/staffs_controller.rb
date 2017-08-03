@@ -11,7 +11,7 @@ class StaffsController < ApplicationController
   def create
     @staff = @store.staffs.new(staff_params)
     if @staff.save
-      redirect_to store_staff_path(@store,@staff)
+      redirect_to store_staff_path(@store,@staff), notice: 'empolyee created successfully'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class StaffsController < ApplicationController
 
   def update
     if @staff.update_attributes(staff_params)
-      redirect_to store_staff_path(@store, @staff)
+      redirect_to store_staff_path(@store, @staff), notice: 'empolyee updated successfully'
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class StaffsController < ApplicationController
 
   def destroy
     @staff.destroy
-    redirect_to show_empolyees_path
+    redirect_to show_empolyees_path, notice: 'empolyee deleted successfully'
   end
 
   private
