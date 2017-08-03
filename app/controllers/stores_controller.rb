@@ -1,10 +1,6 @@
 class StoresController < ApplicationController
   before_action :find_store, except: [:new, :create, :index]
   before_action :authenticate_admin, only: [:edit, :update] 
-    
-  def index
-    @stores = Store.all
-  end
 
   def show 
     @is_admin = is_admin   

@@ -9,6 +9,7 @@ gem 'rolify'
 gem 'faker'
 gem 'pry'
 gem 'devise'
+gem 'rails-controller-testing'
 gem "rspec-core", :github => "rspec/rspec-core"
 gem "rspec-expectations", :github => "rspec/rspec-expectations"
 gem "rspec-mocks", :github => "rspec/rspec-mocks"

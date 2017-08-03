@@ -1,6 +1,5 @@
 require 'rails_helper'
 require 'database_cleaner'
-DatabaseCleaner.strategy = :truncation
 RSpec.describe HomeController, type: :controller do
   render_views
 
@@ -19,6 +18,4 @@ RSpec.describe HomeController, type: :controller do
       expect(response.body).to include(store2.location)
     end
   end
-
-  DatabaseCleaner.clean
 end
