@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'admin/stores', to:'admin#show_stores', as: 'show_stores'
   get 'admin/services', to:'admin#show_services', as: 'show_services'
   resources :services
-  resources :stores, except: [:new, :create, :destroy, :index] do
+  resources :stores, except: [:new, :create, :destroy] do
     resources :appointments, except: [:index]
     resources :staffs
   end

@@ -47,13 +47,13 @@ class AppointmentsController < ApplicationController
     #needs store_id because into individule appointment needs it
     authenticate_admin
     @staff = Staff.find(params[:id]) 
-    @appointments = @staff.appointments.all
+    @appointments = @staff.appointments.where("date_time >= :time",{time: Time.zone.now}).order(date_time: :asc)
   end
 
   def customer_appointments
     authenticate_user!
     @current_user = current_user
-    @appointments = current_user.appointments.all
+    @appointments = current_user.appointments.where("date_time >= :time",{time: Time.zone.now}).order(date_time: :asc)
   end
 
   def edit

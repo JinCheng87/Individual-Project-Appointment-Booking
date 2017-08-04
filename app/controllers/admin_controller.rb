@@ -19,7 +19,7 @@ class AdminController < ApplicationController
     authenticate_admin
     @appointments_array = [] #put all the available array inside this 2d array
     Store.all.each do |store|
-      @appointments_array << store.appointments.where("date_time >= :time",{time: DateTime.now}).order(date_time: :asc)
+      @appointments_array << store.appointments.where("date_time >= :time",{time: Time.zone.now}).order(date_time: :asc)
     end
   end
 

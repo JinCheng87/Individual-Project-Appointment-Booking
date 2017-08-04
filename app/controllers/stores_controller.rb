@@ -6,6 +6,10 @@ class StoresController < ApplicationController
     @is_admin = is_admin   
   end
 
+  def index
+    @stores = Store.all
+  end
+
   def edit
   end
 
