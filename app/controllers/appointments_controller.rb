@@ -21,6 +21,7 @@ class AppointmentsController < ApplicationController
     @staffs = @store.staffs.all
     @services = Service.all
     @appointment = @store.appointments.new(appointment_params)
+    @appointment.date_time = params[:appointment][:date_time].in_time_zone(params[:time_zone])
     if @appointment.staff.available_between(@appointment.date_time, @appointment.endtime)
       if @appointment.date_time < DateTime.now
         flash.now[:notice] = "So you wanna make a reservation for the past?"
@@ -85,7 +86,7 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    app_params = params.require(:appointment).permit(:date_time, :name, :email, :phone_number, :staff_id, :user_id, :store_id, :service_ids)
+    app_params = params.require(:appointment).permit(:date_time, :name, :email, :phone_number, :staff_id, :user_id, :store_id, :service_ids, :time_zone)
     if current_user
       app_params.merge!(user_id: current_user.id) if current_user.has_role? :customer
     end

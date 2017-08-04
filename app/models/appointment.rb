@@ -7,7 +7,7 @@ class Appointment < ApplicationRecord
   validates :date_time, presence: true
   validates :name, presence: true
   validates :email, presence: true
-  validates :phone_number, presence: true
+  validates :phone_number, presence: true, format: { with:/\A\d{3}\d{3}\d{4}\z/, message: 'Invalid phone number' }
   validates :staff_id, presence: true
   validates :store_id, presence: true
 
