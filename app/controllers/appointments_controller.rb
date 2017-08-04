@@ -8,12 +8,13 @@ class AppointmentsController < ApplicationController
     @services = Service.all
     if current_user
       if current_user.has_role? :customer
-        @appointment = current_user.appointments.new(name: current_user.name, phone_number: current_user.phone_number, email: current_user.email, store_id: @store.id, staff_id: params[:staff_id], date_time: DateTime.now)
+        @appointment = current_user.appointments.new(name: current_user.name, phone_number: current_user.phone_number, email: current_user.email, store_id: @store.id, staff_id: params[:staff_id], date_time: Time.zone.now)
+
       else
          @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: params[:date_time])
       end
     else
-      @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: DateTime.now)
+      @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: Time.zone.now)
     end
   end
 
@@ -21,7 +22,6 @@ class AppointmentsController < ApplicationController
     @staffs = @store.staffs.all
     @services = Service.all
     @appointment = @store.appointments.new(appointment_params)
-    @appointment.date_time = params[:appointment][:date_time].in_time_zone(params[:time_zone])
     if @appointment.staff.available_between(@appointment.date_time, @appointment.endtime)
       if @appointment.date_time < DateTime.now
         flash.now[:notice] = "So you wanna make a reservation for the past?"
