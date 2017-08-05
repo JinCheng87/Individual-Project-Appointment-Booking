@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li class="active"><%= link_to 'Schedule',store_schedule_path(1,Date.today) %></li>
+        <li><%= link_to 'Schedule',store_schedule_path(1,Date.today) %></li>
         <li><%= link_to 'Appointments', show_appointments_path %></li>
         <li><%= link_to 'Empolyees', show_empolyees_path %></li>
         <li><%= link_to 'Stores', show_stores_path %></li>
@@ -15,17 +15,29 @@
 
   <div class="btn-group" style="width:100%">
     <ul class="nav nav-pills" role="tablist">
-      <li role="presentation" class="active">
+      <% if @store.id == 1 %>
+        <li role="presentation" class="active">
+      <% else %>
+        <li role="presentation">
+      <% end %>
       <%= link_to store_schedule_path(@stores[0], Date.parse(date.to_s)) do%>
          <%= @stores[0].name %>  <%= content_tag :span,"#{@appointments_array[0]}",class:"badge" %>
         <% end %>
       </li>
-      <li role="presentation">
+      <% if @store.id == 2 %>
+        <li role="presentation" class="active">
+      <% else %>
+        <li role="presentation">
+      <% end %>
       <%= link_to store_schedule_path(@stores[1], Date.parse(date.to_s)) do%>
          <%= @stores[1].name %>  <%= content_tag :span,"#{@appointments_array[1]}",class:"badge" %>
         <% end %>
       </li>
-      <li role="presentation">
+      <% if @store.id == 3 %>
+        <li role="presentation" class="active">
+      <% else %>
+        <li role="presentation">
+      <% end %>
       <%= link_to store_schedule_path(@stores[2], Date.parse(date.to_s)) do%>
          <%= @stores[2].name %>  <%= content_tag :span,"#{@appointments_array[2]}",class:"badge" %>
         <% end %>
@@ -46,3 +58,13 @@
 </div>
 </div>
 </div>
+<%= content_for :javascript do -%>
+<script>
+$(document).ready(function(){
+    $('ul.nav.nav-pills li a').click(function() { 
+    $(this).parent().addClass('active').siblings().removeClass('active');           
+});
+});
+</script>
+<% end -%>
+<%= yield :javascript %>

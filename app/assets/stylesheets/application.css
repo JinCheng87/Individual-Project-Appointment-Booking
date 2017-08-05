@@ -1,3 +1,7 @@
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: #c7c6c6;
+}
 body {
   padding-top: 40px
 }
@@ -222,3 +226,5 @@ body {
 .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
     background-color: rgba(140, 127, 127, 0.26);
 }
+
+
