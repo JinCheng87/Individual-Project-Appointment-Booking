@@ -5,8 +5,9 @@ class AdminController < ApplicationController
     @store = Store.find_by(id: params[:store_id])
     @appointments_array = []
     Store.all.each_with_index do |store,index|
-      
-      @appointments_array[index] = store.appointments.where("date_time = ?",params[:id]).count
+      begin_day = Time.zone.parse(params[:id]).beginning_of_day
+      end_day = Time.zone.parse(params[:id]).end_of_day
+      @appointments_array[index] = store.appointments.where("date_time >= :begin_of_day AND date_time <= :end_of_day",{begin_of_day: begin_day, end_of_day: end_day}).count
     end
     @staffs = @store.staffs.all
     render :show_calendars, locals: {date: params[:id]}
