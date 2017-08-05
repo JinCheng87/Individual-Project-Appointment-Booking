@@ -17,6 +17,6 @@ class Appointment < ApplicationRecord
 
   before_create do
     self.end_time = self.date_time + self.services.first.duration.to_i * 60
+    self.token = Digest::SHA256.hexdigest rand(10 ** 6).to_s
   end
-
 end

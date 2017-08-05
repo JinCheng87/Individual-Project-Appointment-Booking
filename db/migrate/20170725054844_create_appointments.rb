@@ -8,6 +8,7 @@ class CreateAppointments < ActiveRecord::Migration[5.0]
       t.string :phone_number, null: false
       t.integer :staff_id, null: false
       t.integer :user_id
+      t.text :token
       t.belongs_to :store, null: false
       t.timestamps
     end

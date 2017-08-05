@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170804070326) do
     t.string   "phone_number", null: false
     t.integer  "staff_id",     null: false
     t.integer  "user_id"
+    t.text     "token"
     t.integer  "store_id",     null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false

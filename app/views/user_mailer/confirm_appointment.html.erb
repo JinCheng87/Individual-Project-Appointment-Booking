@@ -1,0 +1,13 @@
+<p>Hi, <%= @appointment.name %>.</p>
+<p>You have make a appintment with us.The follow is appointment details.</p>
+  <div>
+    <table class="table table-striped">
+      <tr><td><p>Name: <%= @appointment.name %></p></td></tr>
+      <tr><td><p>Phone number: <%= @appointment.phone_number %></p></td></tr>
+      <tr><td><p>Date: <%= @appointment.date_time.strftime('%Y-%m-%d') %></p></td></tr>
+      <tr><td><p>Start time: <%= @appointment.date_time.strftime('%H:%M') %></p></td></tr>
+      <tr><td><p>End time: <%= @appointment.end_time.strftime('%H:%M') %></p></td></tr>
+      <tr><td><p>Appointment with: <%= @appointment.staff.name %></p></td></tr>
+      <tr><td><p>Services: <%= @appointment.services.first.name %></p></td></tr>
+    </table>
+  </div>

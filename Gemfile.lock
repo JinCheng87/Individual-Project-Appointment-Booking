@@ -231,6 +231,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   byebug
   coffee-rails (~> 4.2)
   database_cleaner

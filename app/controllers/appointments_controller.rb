@@ -28,6 +28,7 @@ class AppointmentsController < ApplicationController
         return
       end
       if @appointment.save
+        UserMailer.confirm_appointment(@appointment).deliver_now
         redirect_to store_appointment_path(@store,@appointment), notice: 'Appointment created successfully'
       else
         render :new
@@ -40,6 +41,7 @@ class AppointmentsController < ApplicationController
 
   def show
     @is_admin = current_user.has_role? :admin if current_user
+    # unless @is_admin || authenticate_current_user || 
   end
 
   def staff_appointments

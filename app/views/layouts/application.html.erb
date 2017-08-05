@@ -23,15 +23,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <% if @is_admin %>
-            <a class="navbar-brand" href="/admin">Booking</a>
-          <% else %>
             <a class="navbar-brand" href="/">Booking</a>
-          <% end %>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
             <li><%= link_to 'Services', services_path %></li>
             <% if current_user %>
               <% if current_user.has_role? :admin %>
@@ -48,7 +43,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
               <% if current_user.has_role? :admin %>
-                <li> <%=link_to "Hello, #{current_user.name} !",admin_path %></li>
+                <li> <%=link_to "Hello, #{current_user.name} !",show_appointments_path %></li>
                 <li> <%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
                 <% else %>
                 <li> <%=link_to "Hello, #{current_user.name} !",customer_appointments_path %></li>
