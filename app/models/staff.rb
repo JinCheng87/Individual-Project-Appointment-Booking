@@ -4,10 +4,6 @@ class Staff < ApplicationRecord
   validates :name, presence: true
   validates :phone_number, presence: true
   validates :store_id, presence: true
-
-  def date_parse(date,hour,minute)
-    DateTime.parse("#{date}+ #{hour.to_s}:#{minute.to_s}")
-  end
   
   def available(date, hour, minute)
     calendar_date = Time.zone.parse("#{date}+ #{hour.to_s}:#{minute.to_s}")
@@ -29,7 +25,7 @@ class Staff < ApplicationRecord
   end
 
   def find_appointment(date, time)
-    calendar_date = DateTime.parse("#{date}+ #{time}")
+    calendar_date = Time.zone.parse("#{date}+ #{time}")
     appointments.each do |appointment|
       if appointment.date_time.strftime('%Y-%m-%d') == date #for less database query
         if calendar_date.between?(appointment.date_time, appointment.end_time) 

@@ -55,8 +55,8 @@ Store.all.each do |store|
 end
 
 
-user1 = User.create(name: 'Jin', email: 'sw02102@gmail.com', password: '123456', phone_number: Faker::PhoneNumber.cell_phone)
-user2 = User.create(name: 'Mike', email: 'mike@gmail.com', password: '123456', phone_number: Faker::PhoneNumber.cell_phone)
+user1 = User.create(name: 'Jin', email: 'sw02102@gmail.com', password: '123456', phone_number: Faker::PhoneNumber.cell_phone,time_zone: 'Central Time (US & Canada)')
+user2 = User.create(name: 'Mike', email: 'mike@gmail.com', password: '123456', phone_number: Faker::PhoneNumber.cell_phone, time_zone: 'Central Time (US & Canada)')
 user1.add_role :admin
 user1.remove_role :customer
 

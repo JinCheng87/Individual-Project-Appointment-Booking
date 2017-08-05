@@ -10,7 +10,7 @@
       <td class="info"><%= time=('%02d' % index +':00')%></td>
         <% @staffs.each do |staff| %>
         <%if staff.available(date, index, 0) %>
-          <td class="table-success"><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: DateTime.parse("#{date}+ #{time}")) %></td>
+          <td class="table-success"><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: Time.zone.parse("#{date}+ #{time}")) %></td>
         <% else %>
           <td class="table-danger"><%= link_to 'view', store_appointment_path(@store, staff.find_appointment(date,time)) %></td>
         <% end %>
@@ -21,7 +21,7 @@
       <td class="info"><%= time=('%02d' % index +':30')%></td>
         <% @staffs.each do |staff| %>
         <%if staff.available(date, index, 30) %>
-          <td class="table-success"><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: DateTime.parse("#{date}+ #{time}")) %></td>
+          <td class="table-success"><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: Time.zone.parse("#{date}+ #{time}")) %></td>
         <% else %>
           <td class="table-danger"><%= link_to 'view', store_appointment_path(@store, staff.find_appointment(date,time)) %></td>
         <% end %>
