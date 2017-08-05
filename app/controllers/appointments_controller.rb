@@ -29,7 +29,7 @@ class AppointmentsController < ApplicationController
       end
       if @appointment.save
         UserMailer.confirm_appointment(@appointment).deliver_now
-        redirect_to store_appointment_path(@store,@appointment), notice: 'Appointment created successfully'
+        redirect_to store_appointment_path(@store,@appointment,token: @appointment.token), notice: 'Appointment created successfully'
       else
         render :new
       end
@@ -40,8 +40,11 @@ class AppointmentsController < ApplicationController
   end
 
   def show
-    @is_admin = current_user.has_role? :admin if current_user
-    # unless @is_admin || authenticate_current_user || 
+    authenticate_user! unless @appointment.token == params[:token]
+    if current_user 
+      @is_admin = current_user.has_role? :admin
+      redirect_to '/404' unless @is_admin || authenticate_current_user || @appointment.token == params[:token]
+    end
   end
 
   def staff_appointments
