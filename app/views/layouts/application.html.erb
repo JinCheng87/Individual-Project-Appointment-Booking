@@ -35,7 +35,7 @@
             <li><%= link_to 'Services', services_path %></li>
             <% if current_user %>
               <% if current_user.has_role? :admin %>
-              <li><%= link_to 'Reservation', show_appointments_path %></li>
+              <li><%= link_to 'Reservation', store_schedule_path(1,Date.today) %></li>
               <% else %>
             <li><%= link_to 'Reservation', new_store_appointment_path(Store.first) %></li>
               <% end %>
