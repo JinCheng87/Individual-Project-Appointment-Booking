@@ -1,12 +1,13 @@
 class AdminController < ApplicationController
-  def index
-    authenticate_admin
-    @stores = Store.all
-    @store = Store.find_by(id: params[:store_id])
-  end
 
   def show_calendars
+    @stores = Store.all
     @store = Store.find_by(id: params[:store_id])
+    @appointments_array = []
+    Store.all.each_with_index do |store,index|
+      
+      @appointments_array[index] = store.appointments.where("date_time = ?",params[:id]).count
+    end
     @staffs = @store.staffs.all
     render :show_calendars, locals: {date: params[:id]}
   end

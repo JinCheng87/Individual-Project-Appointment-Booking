@@ -46,9 +46,5 @@
       <%= f.submit class:"btn btn-primary center-block"%>
     </div>
 
-    <input type="hidden" name="time_zone" id="time_zone">
-    <script>
-      document.getElementById('time_zone').value = Intl.DateTimeFormat().resolvedOptions().timeZone
-    </script>
   <% end %>
 </div> 

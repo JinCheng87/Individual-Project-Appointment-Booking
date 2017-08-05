@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li class="active"><a href="/admin">Calendar <span class="sr-only">(current)</span></a></li>
+        <li class="active"><%= link_to 'Schedule',store_schedule_path(1,Date.today) %></li>
         <li><%= link_to 'Appointments', show_appointments_path %></li>
         <li><%= link_to 'Empolyees', show_empolyees_path %></li>
         <li><%= link_to 'Stores', show_stores_path %></li>
@@ -13,15 +13,33 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 <h1 class="page-header col-md-offset-1">Sechdule for <%= date %></h1>
 
-  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-    <%= link_to "<<<#{Date.parse(date.to_s) - 1}", store_schedule_path(@store, Date.parse(date.to_s) - 1) %>
-  </div>  
+  <div class="btn-group" style="width:100%">
+    <ul class="nav nav-pills" role="tablist">
+      <li role="presentation" class="active">
+      <%= link_to store_schedule_path(@stores[0], Date.parse(date.to_s)) do%>
+         <%= @stores[0].name %>  <%= content_tag :span,"#{@appointments_array[0]}",class:"badge" %>
+        <% end %>
+      </li>
+      <li role="presentation">
+      <%= link_to store_schedule_path(@stores[1], Date.parse(date.to_s)) do%>
+         <%= @stores[1].name %>  <%= content_tag :span,"#{@appointments_array[1]}",class:"badge" %>
+        <% end %>
+      </li>
+      <li role="presentation">
+      <%= link_to store_schedule_path(@stores[2], Date.parse(date.to_s)) do%>
+         <%= @stores[2].name %>  <%= content_tag :span,"#{@appointments_array[2]}",class:"badge" %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 
-  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-    <%= link_to "#{Date.parse(date.to_s) + 1}>>>", store_schedule_path(@store, Date.parse(date.to_s) + 1) %>
+  <nav aria-label="...">
+    <ul class="pager">
+      <li class="previous"><%= link_to "&larr;#{Date.parse(date.to_s) - 1}".html_safe, store_schedule_path(@store, Date.parse(date.to_s) - 1)%></a></li>
+      <li class="previous"><%= link_to "#{Date.parse(date.to_s) + 1}&rarr;".html_safe, store_schedule_path(@store, Date.parse(date.to_s) + 1)%></a></li>
+    </ul>
+  </nav>
 
-  
-</div>
 <%= render 'admin_calendar', date: date%>
 
 </div>

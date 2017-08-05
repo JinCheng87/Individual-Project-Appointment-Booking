@@ -8,13 +8,20 @@
 </head> 
 <body>
   <div class="row">
-  <div class="col-lg-4 col-sm-12">
+  <div class="col-lg-6 col-md-12 col-sm-12">
     <h1>Welcome</h1>
     <br>
     <h4>We're in the loop of Chicago, come to visit us!</h4>
     <br>
+    <% if @stores.any? %>
+      <% @stores.each do |store| %>
+        <h4><%= store.name %></h4>
+        <h4><%= store.location %></h4>
+        <br>
+      <% end %>
+    <% end %>
   </div>
-  <div class="col-lg-4 col-sm-12">
+  <div class="col-lg-6 col-md-12 col-sm-12">
     <div id="map" style="width: 500px; height: 400px;"></div>
 
     <script type="text/javascript">
