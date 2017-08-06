@@ -6,7 +6,7 @@
 <body>
   <p>Hi, <%= @appointment.name %></p>
   <p>You have make a appintment with us.The following is appointment details.</p>
-  <p>If you think this appointment was made by mistake, please clike <a href="http://appt-booking.herokuapp.com/store/<%= @appointment.store.id %>/appointment/<%= @appointment.id %>?token:<%= @appointment.token %>">here</a> to cancel or modify your appointment</p>
+  <p>If you think this appointment was made by mistake, please clike <a href="https://appt-booking.herokuapp.com/store/<%= @appointment.store.id %>/appointment/<%= @appointment.id %>?token:<%= @appointment.token %>">here</a> to cancel or modify your appointment</p>
     <div>
       <table class="table table-striped">
         <tr><td><p>Name: <%= @appointment.name %></p></td></tr>
