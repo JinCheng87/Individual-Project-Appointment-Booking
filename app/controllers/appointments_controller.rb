@@ -29,7 +29,7 @@ class AppointmentsController < ApplicationController
       end
       if @appointment.save
         redirect_to store_appointment_path(@store,@appointment,token: @appointment.token), notice: 'Appointment created successfully'
-        UserMailer.confirm_appointment(@appointment).deliver_now
+        UserMailer.confirm_appointment(@appointment).deliver_later
       else
         render :new
       end
