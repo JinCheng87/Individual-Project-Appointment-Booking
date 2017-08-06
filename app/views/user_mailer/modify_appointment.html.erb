@@ -1,4 +1,6 @@
-<h1>Appointment details</h1>
+<p>Hi, <%= @appointment.name %>.</p>
+<p>You have changes on your appintment.The following is appointment details.</p>
+<p>If you think this appointment was made by mistake, please clike <a href="http://appt-booking.herokuapp.com/store/<%= @appointment.store.id %>/appointment/<%= @appointment.id %>?token:<%= @appointment.token %>">here</a> to cancel or modify</p>
   <div>
     <table class="table table-striped">
       <tr><td><p>Name: <%= @appointment.name %></p></td></tr>
@@ -9,12 +11,5 @@
       <tr><td><p>Appointment with: <%= @appointment.staff.name %></p></td></tr>
       <tr><td><p>Services: <%= @appointment.services.first.name %></p></td></tr>
     </table>
+<p>If you have any question, please contact us: <%= @appointment.store.phone_number %></p>
   </div>
-<div id="options">
-  <%= link_to 'Edit', edit_store_appointment_path(@store,@appointment, token: params[:token]) %>
-  <%= link_to 'Cancel appointment', store_appointment_path(@store,@appointment, token: params[:token]), data: { confirm: 'Are you sure?'}, method: :delete %>
-
-  <% if @is_admin %>
-    <%= link_to 'Back to calendar', store_schedule_path(@store,@appointment.date_time.strftime('%Y-%m-%d')) %>
-  <% end %>
-</div>

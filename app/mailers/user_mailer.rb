@@ -5,4 +5,14 @@ class UserMailer < ApplicationMailer
     @appointment = appointment
     mail(to: @appointment.email, subject:'Appointment confirmation')
   end
+
+  def modify_appointment(appointment)
+    @appointment = appointment
+    mail(to: @appointment.email, subject:'Appointment changed')
+  end
+
+  def cancel_appointment(appointment)
+    @appointment = appointment
+    mail(to: @appointment.email, subject:'Appointment cancelled')
+  end
 end

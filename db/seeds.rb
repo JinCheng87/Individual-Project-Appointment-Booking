@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Store.create(name: Faker::Company.name, location: "226 S Wabash Ave,Chicago, IL 60604", hours: '10AM-10PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.")
+Store.create(name: Faker::Company.name, location: "226 S Wabash Ave,Chicago, IL 60604", hours: '10AM-10PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
 
-  Store.create(name: Faker::Company.name, location: "73 W Monroe st, Chicago, IL 60603", hours: '9AM-9PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.")
+  Store.create(name: Faker::Company.name, location: "73 W Monroe st, Chicago, IL 60603", hours: '9AM-9PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
 
-  Store.create(name: Faker::Company.name, location: "1 S State st, Chicago, IL 60603", hours: '9AM-9PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.")
+  Store.create(name: Faker::Company.name, location: "1 S State st, Chicago, IL 60603", hours: '9AM-9PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
 
 
 Service.create(name: 'Basic Facial(For men, women and teens)', duration: '60', price: '50',description: 'cleansing, peeling, steam, eyebrows shaping, facial massage, remove blackhead, high frequency treatment, eye mask, cold mask', category: 'facial treatment')

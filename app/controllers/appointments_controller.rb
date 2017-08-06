@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :find_store, except: [:customer_appointments]
   before_action :find_appointment, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_current_user, only: [:edit, :destroy, :update]
+  before_action :authenticate_token, only: [:show, :edit, :update, :destroy]
 
   def new
     @staffs = @store.staffs.all
@@ -28,8 +28,8 @@ class AppointmentsController < ApplicationController
         return
       end
       if @appointment.save
-        UserMailer.confirm_appointment(@appointment).deliver_now
         redirect_to store_appointment_path(@store,@appointment,token: @appointment.token), notice: 'Appointment created successfully'
+        UserMailer.confirm_appointment(@appointment).deliver_now
       else
         render :new
       end
@@ -40,11 +40,6 @@ class AppointmentsController < ApplicationController
   end
 
   def show
-    authenticate_user! unless @appointment.token == params[:token]
-    if current_user 
-      @is_admin = current_user.has_role? :admin
-      redirect_to '/404' unless @is_admin || authenticate_current_user || @appointment.token == params[:token]
-    end
   end
 
   def staff_appointments
@@ -61,15 +56,14 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
-    redirect_to '/404' unless is_admin || current_user.id == @appointment.user_id
       @services = Service.all
       @staffs = @store.staffs.all
   end
 
   def update
-    redirect_to '/404' unless is_admin || current_user.id == @appointment.user_id
     if @appointment.update_attributes(appointment_params)
-      redirect_to store_appointment_path(@store,@appointment), notice: 'Appointment updated successfully'
+      redirect_to store_appointment_path(@store,@appointment,token: params[:token]), notice: 'Appointment updated successfully'
+      UserMailer.modify_appointment(@appointment).deliver_now
     else
       render :edit
     end
@@ -78,11 +72,19 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     redirect_to store_path(@store), notice: 'Appointment cancelled successfully'
+    UserMailer.cancel_appointment(@appointment).deliver_now
   end
 
   private
   def find_store
     @store = Store.find_by(id: params[:store_id])
+  end
+
+  def authenticate_token
+    authenticate_user! unless @appointment.token == params[:token]
+    if current_user 
+      redirect_to '/404' unless is_admin || authenticate_current_user
+    end
   end
 
   def find_appointment

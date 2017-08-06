@@ -69,12 +69,13 @@ ActiveRecord::Schema.define(version: 20170804070326) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "location",    null: false
-    t.string   "hours",       null: false
-    t.string   "description", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "name",         null: false
+    t.string   "location",     null: false
+    t.string   "hours",        null: false
+    t.string   "description",  null: false
+    t.string   "phone_number", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.float    "latitude"
     t.float    "longitude"
   end
