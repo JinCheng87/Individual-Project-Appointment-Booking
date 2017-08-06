@@ -63,7 +63,7 @@ class AppointmentsController < ApplicationController
   def update
     if @appointment.update_attributes(appointment_params)
       redirect_to store_appointment_path(@store,@appointment,token: params[:token]), notice: 'Appointment updated successfully'
-      UserMailer.modify_appointment(@appointment).deliver_now
+      UserMailer.modify_appointment(@appointment).deliver_later
     else
       render :edit
     end
