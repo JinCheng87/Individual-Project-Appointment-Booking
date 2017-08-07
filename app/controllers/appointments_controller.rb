@@ -29,7 +29,7 @@ class AppointmentsController < ApplicationController
       end
       if @appointment.save
         redirect_to store_appointment_path(@store,@appointment,token: @appointment.token), notice: 'Appointment created successfully'
-        UserMailer.confirm_appointment(@appointment).deliver_later
+        EmailConfirmAppointmentJob.perform_later(@appointment)
       else
         render :new
       end
@@ -63,7 +63,7 @@ class AppointmentsController < ApplicationController
   def update
     if @appointment.update_attributes(appointment_params)
       redirect_to store_appointment_path(@store,@appointment,token: params[:token]), notice: 'Appointment updated successfully'
-      UserMailer.modify_appointment(@appointment).deliver_later
+      EmailModifyAppointmentJob.perform_later(@appointment)
     else
       render :edit
     end
@@ -72,7 +72,7 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     redirect_to store_path(@store), notice: 'Appointment cancelled successfully'
-    UserMailer.cancel_appointment(@appointment).deliver_now
+    EmailCancelAppointmentJob.perform_later(@appointment)
   end
 
   private
