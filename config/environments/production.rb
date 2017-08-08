@@ -4,9 +4,8 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-appt-booking-test::Application.configure do
-  $redis = Redis.new(url: ENV["REDIS_URL"])
-  #other stuff below
+  uri = ENV["REDISTOGO_URL"] || "redis://localhost:6379/"
+  REDIS = Redis.new(:url => uri)
 
 
 end
