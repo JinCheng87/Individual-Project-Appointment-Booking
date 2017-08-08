@@ -5,8 +5,7 @@ Rails.application.configure do
   config.cache_classes = true
 
 appt-booking-test::Application.configure do
-  ENV["REDISTOGO_URL"] = 'redis://redistogo:7bb6f2e40394b58f578f0a02bf7ec878@crestfish.redistogo.com:9153/'
-
+  $redis = Redis.new(url: ENV["REDIS_URL"])
   #other stuff below
 
 
