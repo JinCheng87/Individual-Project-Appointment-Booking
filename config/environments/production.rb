@@ -4,6 +4,16 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
+appt-booking-test::Application.configure do
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:7bb6f2e40394b58f578f0a02bf7ec878@crestfish.redistogo.com:9153/'
+
+  #other stuff below
+
+
+end
+
+
+
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
