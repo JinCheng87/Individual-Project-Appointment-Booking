@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 gem 'redis'
 gem 'foreman'
-gem 'resque', require: 'resque/server'
+gem 'resque'
 gem 'bcrypt'
 gem 'geocoder'
 gem 'local_time'
