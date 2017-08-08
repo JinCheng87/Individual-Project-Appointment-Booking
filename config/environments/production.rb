@@ -7,11 +7,6 @@ Rails.application.configure do
   uri = ENV["REDISTOGO_URL"] || "redis://localhost:6379/"
   REDIS = Redis.new(:url => uri)
 
-
-end
-
-
-
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
