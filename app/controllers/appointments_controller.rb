@@ -83,7 +83,7 @@ class AppointmentsController < ApplicationController
   def authenticate_token
     authenticate_user! unless @appointment.token == params[:token]
     if current_user 
-      redirect_to '/404' unless is_admin || authenticate_current_user
+      redirect_to '/404' unless is_admin || current_user.id == @appointment.user_id
     end
   end
 

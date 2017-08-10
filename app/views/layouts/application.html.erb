@@ -28,26 +28,19 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><%= link_to 'Services', services_path %></li>
-            <% if current_user %>
-              <% if current_user.has_role? :admin %>
-              <li><%= link_to 'Reservation', store_schedule_path(1,Date.today) %></li>
-              <% else %>
             <li><%= link_to 'Reservation', new_store_appointment_path(Store.first) %></li>
-              <% end %>
-            <% else %>
-            <li><%= link_to 'Reservation', new_store_appointment_path(Store.first) %></li>
-            <% end %>
             <li><%= link_to 'Staffs',store_staffs_path(Store.first) %></li>
             <li><%= link_to 'Direction', stores_path %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
               <% if current_user.has_role? :admin %>
-                <li> <%=link_to "Hello, #{current_user.name} !",show_appointments_path %></li>
-                <li> <%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
+                <li><%= link_to 'Go to calendar', store_schedule_path(1,Date.today) %></li>
+                <li><%=link_to "Hello, #{current_user.name} !",show_appointments_path %></li>
+                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
                 <% else %>
-                <li> <%=link_to "Hello, #{current_user.name} !",customer_appointments_path %></li>
-                <li> <%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
+                <li><%=link_to "Hello, #{current_user.name} !",customer_appointments_path %></li>
+                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
                 <% end %>
             <% else %>
               <li><%= link_to 'Register', new_user_registration_path %></li> 
