@@ -47,10 +47,10 @@ Store.all.each do |store|
     store.staffs.create(name: Faker::Name.name, phone_number: Faker::PhoneNumber.cell_phone)
   end
     store.staffs.all.each do |staff|
-      staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(DateTime.now + 1, DateTime.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:2, store_id:staff.store_id )
-      staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(DateTime.now + 1, DateTime.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:1, store_id:staff.store_id )
+      staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(Time.zone.now + 1, Time.zone.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:2, store_id:staff.store_id )
+      staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(Time.zone.now + 1, Time.zone.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:1, store_id:staff.store_id )
 
-      staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(DateTime.now + 1, DateTime.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:3, store_id:staff.store_id )
+      staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(Time.zone.now + 1, Time.zone.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:3, store_id:staff.store_id )
     end
 end
 

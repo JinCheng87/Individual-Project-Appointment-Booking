@@ -22,7 +22,7 @@ class AppointmentsController < ApplicationController
     @services = Service.all
     @appointment = @store.appointments.new(appointment_params)
     if @appointment.staff.available_between(@appointment.date_time, @appointment.endtime)
-      if @appointment.date_time < DateTime.now
+      if @appointment.date_time < Time.zone.now
         flash.now[:notice] = "So you wanna make a reservation for the past?"
         render :new
         return
