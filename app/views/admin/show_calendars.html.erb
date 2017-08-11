@@ -47,8 +47,8 @@
   <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="previous"><%= link_to "&larr; #{Date.parse(date.to_s) - 1}".html_safe, store_schedule_path(@store, Date.parse(date.to_s) - 1)%></a></li>
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1"><%= Date.parse(date.to_s) %></a>
+    <li class="page-item ">
+      <a class="page-link" href="/admin/stores/<%= @store.id %>/schedule/<%= Date.parse(Date.today.to_s) %>" tabindex="-1">Today</a>
     </li>
     <li class="previous"><%= link_to "#{Date.parse(date.to_s) + 1} &rarr;".html_safe, store_schedule_path(@store, Date.parse(date.to_s) + 1)%></a></li>
     </li>

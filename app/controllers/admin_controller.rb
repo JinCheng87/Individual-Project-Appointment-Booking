@@ -2,7 +2,7 @@ class AdminController < ApplicationController
   before_action :authenticate_admin
 
   def show_calendars
-    @stores = Store.all
+    @stores = Store.all.order(:id)
     @store = Store.find_by(id: params[:store_id])
     @appointments_array = []
     Store.all.each_with_index do |store,index|
