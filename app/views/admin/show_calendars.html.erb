@@ -5,7 +5,6 @@
         <li class="active"><%= link_to 'Schedule',store_schedule_path(1,Date.today) %></li>
         <li><%= link_to 'Appointments', show_appointments_path %></li>
         <li><%= link_to 'Empolyees', show_empolyees_path %></li>
-        <li><%= link_to 'Stores', show_stores_path %></li>
         <li><%= link_to 'Services', show_services_path %></li>
       </ul>
     </div>
@@ -62,13 +61,3 @@
 </div>
 </div>
 </div>
-<%= content_for :javascript do -%>
-<script>
-$(document).ready(function(){
-    $('ul.nav.nav-pills li a').click(function() { 
-    $(this).parent().addClass('active').siblings().removeClass('active');           
-});
-});
-</script>
-<% end -%>
-<%= yield :javascript %>

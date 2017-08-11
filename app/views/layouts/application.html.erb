@@ -33,6 +33,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
               <% if current_user.has_role? :admin %>
+                <li><%= link_to 'All appointments', show_appointments_path %></li>
                 <li><%= link_to 'Go to calendar', store_schedule_path(1,Date.today) %></li>
                 <li><%=link_to "Hello, #{current_user.name} !",show_appointments_path %></li>
                 <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 

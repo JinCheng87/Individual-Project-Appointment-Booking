@@ -6,7 +6,7 @@
   <tr><td><p>description: <%= @service.description %></p></td></tr>
   
 </table>
-
+<p><%= button_to 'Back', services_path, method: :get , class:"btn btn-primary center-block"%>
 <p><% if @is_admin %></p>
 <p><%= button_to 'edit', edit_service_path(@service), method: :get , class:"btn btn-primary center-block"%>
 <br>

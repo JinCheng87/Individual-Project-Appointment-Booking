@@ -36,7 +36,7 @@ class ServicesController < ApplicationController
 
   def destroy
     @service.destroy
-    redirect_to services_path, notice: 'service deleted successfully'
+    redirect_to show_services_path, notice: 'service deleted successfully'
   end
 
   private
