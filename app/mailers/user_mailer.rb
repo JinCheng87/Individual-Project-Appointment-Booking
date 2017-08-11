@@ -15,4 +15,9 @@ class UserMailer < ApplicationMailer
     @appointment = appointment
     mail(to: @appointment.email, subject:'Appointment cancelled')
   end
+
+  def remind_appointment(appointment)
+    @appointment = appointment
+    mail(to: @appointment.email, subject:'Appointment comming up')
+  end
 end

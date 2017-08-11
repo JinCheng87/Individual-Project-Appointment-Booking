@@ -10,23 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804070326) do
+ActiveRecord::Schema.define(version: 20170811000811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.datetime "date_time",    null: false
+    t.datetime "date_time",                         null: false
     t.datetime "end_time"
-    t.string   "name",         null: false
-    t.string   "email",        null: false
-    t.string   "phone_number", null: false
-    t.integer  "staff_id",     null: false
+    t.string   "name",                              null: false
+    t.string   "email",                             null: false
+    t.string   "phone_number",                      null: false
+    t.integer  "staff_id",                          null: false
     t.integer  "user_id"
     t.text     "token"
-    t.integer  "store_id",     null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "store_id",                          null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "has_been_reminded", default: false
     t.index ["store_id"], name: "index_appointments_on_store_id", using: :btree
   end
 
