@@ -5,9 +5,11 @@ namespace :reminder do
     Store.all.each do|store|
       appointments << store.appointments.where("date_time <= :five_hours_prior AND date_time >= :time_now AND has_been_reminded = false",{five_hours_prior: Time.zone.now + 5.hours, time_now: Time.zone.now})
     end
+    
     appointments.flatten.each do |appointment|
-      UserMailer.remind_appointment(appointment).deliver_now
-      appointment.has_been_reminded = true
+      @appointment = appointment
+      UserMailer.remind_appointment(@appointment).deliver_now
+      @appointment.update_attributes(has_been_reminded: true)
     end
   end
 end
