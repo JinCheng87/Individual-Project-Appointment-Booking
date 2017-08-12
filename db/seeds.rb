@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Store.create(name: Faker::Company.name, location: "226 S Wabash Ave,Chicago, IL 60604", hours: '10AM-10PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
+Store.create(name: 'STORE 1', location: "226 S Wabash Ave,Chicago, IL 60604", hours: '10AM-10PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
 
-  Store.create(name: Faker::Company.name, location: "73 W Monroe st, Chicago, IL 60603", hours: '9AM-9PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
+  Store.create(name: 'STORE 2', location: "73 W Monroe st, Chicago, IL 60603", hours: '9AM-9PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
 
-  Store.create(name: Faker::Company.name, location: "1 S State st, Chicago, IL 60603", hours: '9AM-9PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
+  Store.create(name: 'STORE 3', location: "1 S State st, Chicago, IL 60603", hours: '9AM-9PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
 
 
 Service.create(name: 'Basic Facial(For men, women and teens)', duration: '60', price: '50',description: 'cleansing, peeling, steam, eyebrows shaping, facial massage, remove blackhead, high frequency treatment, eye mask, cold mask', category: 'facial treatment')
@@ -44,7 +44,7 @@ Service.create(name: ' Back waxing', duration: '30', price: '40', category: 'wax
 
 Store.all.each do |store|
   6.times do
-    store.staffs.create(name: Faker::Name.name, phone_number: Faker::PhoneNumber.cell_phone)
+    store.staffs.create(name: 'Faker::Name.name', phone_number: Faker::PhoneNumber.cell_phone)
   end
     store.staffs.all.each do |staff|
       staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(Time.zone.now + 1, Time.zone.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:2, store_id:staff.store_id )
