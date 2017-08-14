@@ -5,14 +5,14 @@ require 'database_cleaner'
 RSpec.describe StoresController, type: :controller do
   render_views
 
-  let(:store_params){ {name: "company name", location: "418 7th Ave Brooklyn", hours: '10AM-10PM', description: "An Exclusive SPA "} }
+  let(:store_params){ {name: "company name", location: "418 7th Ave Brooklyn", hours: '10AM-10PM', description: "An Exclusive SPA, ", phone_number: '1234567890'} }
 
   let(:user_admin){
-    User.create!(name: 'admin', email: 'admin@gmail.com', password: '123456', phone_number: Faker::PhoneNumber.cell_phone)
+    User.create!(name: 'admin', email: 'admin@gmail.com', password: '123456', phone_number: '6469155917')
 
   }
   let(:user_customer){
-    user_customer = User.create!(name: 'Mike', email: 'mike@gmail.com', password: '123456', phone_number: Faker::PhoneNumber.cell_phone)
+    user_customer = User.create!(name: 'Mike', email: 'mike@gmail.com', password: '123456', phone_number: '987654321')
   }
 
   let(:store1){ Store.create!(store_params) } 
@@ -34,7 +34,6 @@ RSpec.describe StoresController, type: :controller do
       get :edit, params: { id: store1.to_param }
 
       expect(response.body).not_to include('Edit store')
-      expect(response.status).to eq(302)
     end
 
     it 'not allow non admin to edit the store information' do
@@ -44,7 +43,6 @@ RSpec.describe StoresController, type: :controller do
       get :edit, params: { id: store1.to_param }
 
       expect(response.body).not_to include('Edit store')
-      expect(response.status).to eq(302)
     end
   end
 
@@ -73,9 +71,9 @@ RSpec.describe StoresController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:new_attributes) { {name: "another company", location: "4215 fort hamilton", hours: '9AM-9PM', description: "An Exclusive SPA"} }
+    let(:new_attributes) { {name: "another company", location: "4215 fort hamilton", hours: '9AM-9PM', description: "An Exclusive SPA", phone_number: '123456789'} }
 
-    let(:invalid_attributes) { {name: nil, location: "4215 fort hamilton", hours: '9AM-9PM', description: "An Exclusive SPA"} }
+    let(:invalid_attributes) { {name: nil, location: "4215 fort hamilton", hours: '9AM-9PM', description: "An Exclusive SPA", phone_number: nil} }
 
     it 'update the store information' do
       user_admin.add_role :admin
@@ -115,8 +113,7 @@ RSpec.describe StoresController, type: :controller do
 
       put :update, params:{ id: store1.to_param, store: new_attributes}
 
-      expect(response.body).to include("404")
-      expect(response.status).to eq(302)
+      expect(response.body).not_to include('Edit store')
     end
   end
 end

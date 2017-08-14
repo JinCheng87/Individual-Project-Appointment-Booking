@@ -45,10 +45,14 @@ class StaffsController < ApplicationController
 
   def find_store
     @store = Store.find_by(id: params[:store_id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 
   def find_staff
     @staff = Staff.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 
   def staff_params

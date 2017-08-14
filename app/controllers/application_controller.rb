@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found
-    redirect_to '/404'
+    render 'errors/not_found'
   end
 
   def is_admin
@@ -20,11 +20,11 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin
     authenticate_user!
-    redirect_to '/404' if !is_admin
+    render 'errors/not_found' if !is_admin
   end
 
   def authenticate_current_user
     authenticate_user!
-    redirect_to '/404' unless is_admin || current_user.id == @appointment.user_id
+    render 'errors/not_found' unless is_admin || current_user.id == @appointment.user_id
   end
 end

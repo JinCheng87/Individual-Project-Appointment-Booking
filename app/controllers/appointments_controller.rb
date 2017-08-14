@@ -83,12 +83,14 @@ class AppointmentsController < ApplicationController
   def authenticate_token
     authenticate_user! unless @appointment.token == params[:token]
     if current_user 
-      redirect_to '/404' unless is_admin || current_user.id == @appointment.user_id
+      render 'errors/not_found' unless is_admin || current_user.id == @appointment.user_id
     end
   end
 
   def find_appointment
     @appointment = Appointment.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 
   def appointment_params

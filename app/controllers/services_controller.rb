@@ -42,10 +42,12 @@ class ServicesController < ApplicationController
   private
 
   def service_params
-    params.require(:service).permit(:name, :duration, :price)
+    params.require(:service).permit(:name, :duration, :price, :category)
   end
 
   def find_service
     @service = Service.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 end

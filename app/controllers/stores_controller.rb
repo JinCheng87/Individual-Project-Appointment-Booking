@@ -29,6 +29,8 @@ class StoresController < ApplicationController
 
   def find_store
     @store = Store.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 end
 
