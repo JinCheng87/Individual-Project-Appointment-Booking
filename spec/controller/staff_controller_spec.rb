@@ -1,48 +1,49 @@
 require 'rails_helper'
 require 'database_cleaner'
 
-RSpec.describe ServicesController, type: :controller do
+RSpec.describe StaffsController, type: :controller do
   render_views
 
   let(:store) { Store.create!( name: "company name", location: "418 7th Ave Brooklyn", hours: '10AM-10PM', description: "An Exclusive SPA, ", phone_number: '1234567890' ) }
-  let(:service_params) { { name: 'collagen Mask', duration: '30', price: '30',description: 'Hydrating, brightening and firm the skin.', category: 'special treatment' } }
-  let(:service_params_2) { { name: 'massage', duration: '60', price: '90',description: 'Hydrating, brightening and firm the skin.', category: 'special treatment' } }
-
-  let(:service_invalid_params) { {name: nil, duration: '', price: nil,description: 'Hydrating, brightening and firm the skin.', category: 'special treatment'} }
 
   let(:user_admin){
     User.create!(name: 'admin', email: 'admin@gmail.com', password: '123456', phone_number: '6469155917')
   }
+
   let(:user_customer){
     user_customer = User.create!(name: 'Mike', email: 'mike@gmail.com', password: '123456', phone_number: 987654321)
   }
 
+  let(:staff_params){ {name: 'John', phone_number: '6469162183'} }
+
+  let(:staff_params_2){ {name: 'Lee', phone_number: '6469162199'} }
+
+  let(:staff_invalid_params){ {name: nil, phone_number: '6469162199'} }
+
   describe 'GET #index' do
 
-    it 'shows no services when it is empty' do
-      get :index 
+    it 'shows no staffs when it is empty' do
+      get :index, params: {store_id: store.id}
 
-      expect(response.body).to include('No service yet')
+      expect(response.body).to include('No staff available')
     end
 
     it 'list all the services' do
-      service = Service.create!(service_params)
-      service2 = Service.create!(service_params_2)
+      staff = store.staffs.create!(staff_params)
+      staff2 = store.staffs.create!(staff_params_2)
 
-      get :index
+      get :index, params: {store_id: store.id}
 
-      expect(Service.count).to eq(2)
-      expect(response.body).to include("#{service.name}")
-      expect(response.body).to include("#{service2.name}")
-      expect(response.body).to include('price')
-      expect(response.body).to include("#{service.duration}")
-      expect(response.body).to include('<table')
+      expect(Staff.count).to eq(2)
+      expect(response.body).to include("#{staff.name}")
+      expect(response.body).to include("#{staff2.name}")
+      expect(response.body).to include('<img')
     end
   end
 
   describe 'GET #new' do
     it 'ask for login when not sign in' do
-      get :new
+      get :new, params: {store_id: store.id}
 
       expect(response.code).to eq('302')
       expect(response.body).to include('sign_in')
@@ -51,9 +52,9 @@ RSpec.describe ServicesController, type: :controller do
     it 'shows an error when is not admin' do
       sign_in(user_customer)
 
-      get :new
+      get :new, params: {store_id: store.id}
 
-      expect(response.body).not_to include('Create a service')
+      expect(response.body).not_to include('Create a employee')
     end
 
     it 'render a form when admin login' do
@@ -61,35 +62,37 @@ RSpec.describe ServicesController, type: :controller do
       user_admin.add_role :admin
       user_admin.remove_role :customer
 
-      get :new
+      get :new, params: {store_id: store.id}
 
       expect(response.body).to include('<form')
-      expect(response.body).to include('Create a service')
+      expect(response.body).to include('Create a employee')
     end
   end
 
+
   describe 'GET show' do
-    it 'render a 404 for non-existent service' do
-      get :show, params: {id: -1}
+    it 'render a 404 for non-existent staff' do
+      get :show, params: { store_id: store.id, id: -1}
 
       expect(response.body).to include("The page you were looking for doesn't exist")
     end
 
-    it 'render details of individule service' do
-      service = Service.create!(service_params)
+    it 'render details of individule staff' do
+      staff = store.staffs.create!(staff_params)
 
-      get :show, params: {id: service.id}
+      get :show, params: { store_id: store.id, id: staff.id}
 
-      expect(response.body).to include('service detail')
-      expect(response.body).to include('price')
-      expect(response.body).to include('description')
+      expect(response.body).to include('Staff details')
+      expect(response.body).to include('Name')
+      expect(response.body).to include(staff.name)
+      expect(response.body).to include('Phone number')
     end
   end
 
   describe 'GET edit' do
-    let(:service) {service = Service.create!(service_params)}
+    let(:staff){ staff = store.staffs.create!(staff_params) }
     it 'ask for login when not sign in' do
-      get :edit, params: {id: service.id}
+      get :edit, params: { store_id: store.id, id: staff.id }
 
       expect(response.code).to eq('302')
       expect(response.body).to include('sign_in')
@@ -98,9 +101,9 @@ RSpec.describe ServicesController, type: :controller do
     it 'shows an error when is not admin' do
       sign_in(user_customer)
 
-      get :edit, params: {id: service.id}
+      get :edit, params: { store_id: store.id, id: staff.id }
 
-      expect(response.body).not_to include('Create a service')
+      expect(response.body).not_to include('Create')
     end
 
     it 'render a form when admin login' do
@@ -108,17 +111,17 @@ RSpec.describe ServicesController, type: :controller do
       user_admin.add_role :admin
       user_admin.remove_role :customer
 
-      get :edit, params: {id: service.id}
+      get :edit, params: { store_id: store.id, id: staff.id }
 
       expect(response.body).to include('<form')
-      expect(response.body).to include('Edit service')
+      expect(response.body).to include('Edit staff')
     end
   end
 
-  describe 'POST create' do
+    describe 'POST create' do
 
     it 'ask for login when not sign in' do
-      post :create, params: {service: service_params}
+      post :create, params: { store_id: store.id }
 
       expect(response.code).to eq('302')
       expect(response.body).to include('sign_in')
@@ -127,9 +130,9 @@ RSpec.describe ServicesController, type: :controller do
     it 'shows an error when is not admin' do
       sign_in(user_customer)
 
-      post :create, params: {service: service_params}
+      post :create, params: { store_id: store.id, staff: staff_params }
 
-      expect(response.body).not_to include('Create a service')
+      expect(response.body).not_to include('Create a staff')
     end
 
     it 'creates the new record' do
@@ -137,15 +140,15 @@ RSpec.describe ServicesController, type: :controller do
       user_admin.add_role :admin
       user_admin.remove_role :customer
       expect{
-        post :create, params: {service: service_params}
-      }.to change{(Service.count)}.by(1)
+        post :create, params: { store_id: store.id, staff: staff_params }
+      }.to change{(Staff.count)}.by(1)
     end
 
     it 'redirect to the new service' do
       sign_in(user_admin)
       user_admin.add_role :admin
       user_admin.remove_role :customer
-      post :create, params: {service: service_params}
+      post :create, params: { store_id: store.id, staff: staff_params }
       expect(response.code).to eq('302')
     end
 
@@ -153,17 +156,17 @@ RSpec.describe ServicesController, type: :controller do
       sign_in(user_admin)
       user_admin.add_role :admin
       user_admin.remove_role :customer
-      post :create, params: {service: service_invalid_params}
-      expect(response.body).to include('Create a service')
-      expect(response.body).to include('prohibited this service from being saved')
+      post :create, params: { store_id: store.id, staff: staff_invalid_params }
+      expect(response.body).to include('Create a employee')
+      expect(response.body).to include('prohibited this staff from being saved')
     end
   end
 
   describe 'PUT update' do
-    let(:service) {service = Service.create!(service_params)}
+    let(:staff) {staff = store.staffs.create!(staff_params)}
 
     it 'ask for login when not sign in' do
-      put :update, params: {id: service.id, service: service_params_2}
+      put :update, params: { id: staff.id, store_id: store.id }
 
       expect(response.code).to eq('302')
       expect(response.body).to include('sign_in')
@@ -172,9 +175,9 @@ RSpec.describe ServicesController, type: :controller do
     it 'shows an error when is not admin' do
       sign_in(user_customer)
 
-      put :update, params: {id: service.id, service: service_params_2}
+      put :update, params: { id: staff.id, store_id: store.id }
 
-      expect(response.body).not_to include('Edit service')
+      expect(response.body).not_to include('Edit staff')
     end
 
     it 'update the service when is admin' do
@@ -183,9 +186,9 @@ RSpec.describe ServicesController, type: :controller do
       user_admin.remove_role :customer
 
       expect{
-        put :update, params: {id: service.id, service: service_params_2}
+        put :update, params: { id: staff.id, store_id: store.id, staff: staff_params_2 }
         }.to change{
-          service.reload.name
+          staff.reload.name
         }
     end
 
@@ -194,18 +197,17 @@ RSpec.describe ServicesController, type: :controller do
       user_admin.add_role :admin
       user_admin.remove_role :customer
 
-      put :update, params: {id: service.id, service: service_invalid_params}
+      put :update, params: { id: staff.id, store_id: store.id, staff: staff_invalid_params }
 
-      expect(response.body).to include('prohibited this service from being saved')
+      expect(response.body).to include('prohibited this staff from being saved')
     end
   end
 
   describe 'DELETE #destroy' do
-    let(:service) {Service.create!(service_params)}
+    let(:staff) {staff = store.staffs.create!(staff_params)}
 
     it 'ask for login when not sign in' do
-      delete :destroy, params: {id: service.id}
-
+      delete :destroy, params: { id: staff.id, store_id: store.id }
       expect(response.code).to eq('302')
       expect(response.body).to include('sign_in')
     end
@@ -213,9 +215,8 @@ RSpec.describe ServicesController, type: :controller do
     it 'shows an error when is not admin' do
       sign_in(user_customer)
 
-      delete :destroy, params: {id: service.id}
+      delete :destroy, params: { id: staff.id, store_id: store.id }
 
-      expect(response.body).not_to include('Edit service')
       expect(response.body).to include("The page you were looking for doesn't exist")
     end
 
@@ -224,25 +225,9 @@ RSpec.describe ServicesController, type: :controller do
       user_admin.add_role :admin
       user_admin.remove_role :customer
 
-      delete :destroy, params: {id: service.id} 
+      delete :destroy, params: { id: staff.id, store_id: store.id } 
       
       expect(response.code).to eq('302')
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
