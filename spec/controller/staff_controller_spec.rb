@@ -28,7 +28,7 @@ RSpec.describe StaffsController, type: :controller do
       expect(response.body).to include('No staff available')
     end
 
-    it 'list all the services' do
+    it 'list all the staffs' do
       staff = store.staffs.create!(staff_params)
       staff2 = store.staffs.create!(staff_params_2)
 
@@ -38,6 +38,33 @@ RSpec.describe StaffsController, type: :controller do
       expect(response.body).to include("#{staff.name}")
       expect(response.body).to include("#{staff2.name}")
       expect(response.body).to include('<img')
+    end
+
+    it 'does not have a add_staff button when is not admin nor customer' do
+
+      get :index, params: {store_id: store.id}
+
+      expect(response.body).to_not include("Add Employee")
+    end
+
+    it 'does not have a add_staff button when login as customer' do
+
+      sign_in(user_customer)
+
+      get :index, params: {store_id: store.id}
+
+        expect(response.body).to_not include("Add Employee")
+    end
+
+    it 'has a add_staff button when login as admin' do
+
+      sign_in(user_admin)
+      user_admin.add_role :admin
+      user_admin.remove_role :customer
+
+      get :index, params: {store_id: store.id}
+
+      expect(response.body).to include("Add Employee")
     end
   end
 

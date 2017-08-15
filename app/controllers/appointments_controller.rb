@@ -45,8 +45,10 @@ class AppointmentsController < ApplicationController
   def staff_appointments
     #needs store_id because into individule appointment needs it
     authenticate_admin
-    @staff = Staff.find(params[:id]) 
+    @staff = Staff.find(params[:id])
     @appointments = @staff.appointments.where("date_time >= :time",{time: Time.zone.now}).order(date_time: :asc)
+  rescue ActiveRecord::RecordNotFound
+      render 'errors/not_found'
   end
 
   def customer_appointments
@@ -78,6 +80,14 @@ class AppointmentsController < ApplicationController
   private
   def find_store
     @store = Store.find_by(id: params[:store_id])
+  rescue ActiveRecord::RecordNotFound
+    render'/errors/not_found'
+  end
+
+  def find_staff
+    @staff = Staff.find_by(id: params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render 'errors/not_found'
   end
 
   def authenticate_token
