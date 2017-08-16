@@ -10,7 +10,7 @@ class AppointmentsController < ApplicationController
       if current_user.has_role? :customer
         @appointment = current_user.appointments.new(name: current_user.name, phone_number: current_user.phone_number, email: current_user.email, store_id: @store.id, staff_id: params[:staff_id], date_time: Time.zone.now)
       else
-         @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: params[:date_time])
+         @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: params[:date_time]||=Time.zone.now)
       end
     else
       @appointment = @store.appointments.new(staff_id: params[:staff_id], date_time: Time.zone.now)
@@ -40,6 +40,7 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+    @is_admin = is_admin
   end
 
   def staff_appointments

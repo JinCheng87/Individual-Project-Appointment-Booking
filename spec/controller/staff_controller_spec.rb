@@ -247,7 +247,7 @@ RSpec.describe StaffsController, type: :controller do
       expect(response.body).to include("The page you were looking for doesn't exist")
     end
 
-    it 'delete the record and redirect when is admin' do
+    it 'delete the record and redirect when login as admin' do
       sign_in(user_admin)
       user_admin.add_role :admin
       user_admin.remove_role :customer

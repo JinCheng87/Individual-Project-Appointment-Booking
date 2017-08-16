@@ -26,10 +26,6 @@ class AdminController < ApplicationController
     end
   end
 
-  def show_stores
-    @stores = Store.all
-  end
-
   def show_services
     @services = Service.all
   end

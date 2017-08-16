@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     end
     false
   end
-
+  
   def authenticate_admin
     authenticate_user!
     render 'errors/not_found' if !is_admin
