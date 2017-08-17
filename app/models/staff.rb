@@ -1,6 +1,7 @@
 class Staff < ApplicationRecord
   resourcify
   has_many :appointments
+  has_many :block_times
   validates :name, presence: true
   validates :phone_number, presence: true
   validates :store_id, presence: true
@@ -34,4 +35,10 @@ class Staff < ApplicationRecord
       end
     end
   end
+
+
+  def is_blocked(start)
+    block_times.where(start_time: start)
+  end
+
 end
