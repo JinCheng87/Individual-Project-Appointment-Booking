@@ -1,5 +1,5 @@
 
-Store.create(name: 'STORE 1', location: "226 S Wabash Ave,Chicago, IL 60604", open_hour: Time.zone.now, close_hour: Time.zone.now+8.hours, description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
+Store.create(name: 'STORE 1', location: "226 S Wabash Ave,Chicago, IL 60604", open_hour: Time.zone.new(2002, 10, 31, 8, 0, 0), close_hour: Time.zone.new(2002, 10, 31, 22, 0, 0), description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
 
   Store.create(name: 'STORE 2', location: "73 W Monroe st, Chicago, IL 60603", open_hour: Time.zone.now, close_hour: Time.zone.now+8.hours, description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
 

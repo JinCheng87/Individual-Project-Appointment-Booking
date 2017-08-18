@@ -5,7 +5,7 @@ require 'database_cleaner'
 RSpec.describe StoresController, type: :controller do
   render_views
 
-  let(:store_params){ {name: "company name", location: "418 7th Ave Brooklyn", hours: '10AM-10PM', description: "An Exclusive SPA, ", phone_number: '1234567890'} }
+  let(:store_params){ {name: "company name", location: "418 7th Ave Brooklyn", open_hour: Time.new(2002, 10, 1, 8, 0, 0), close_hour: Time.new(2002, 10, 1, 22, 0, 0), description: "An Exclusive SPA, ", phone_number: '1234567890'} }
 
   let(:user_admin){
     User.create!(name: 'admin', email: 'admin@gmail.com', password: '123456', phone_number: '6469155917')
@@ -71,9 +71,9 @@ RSpec.describe StoresController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:new_attributes) { {name: "another company", location: "4215 fort hamilton", hours: '9AM-9PM', description: "An Exclusive SPA", phone_number: '123456789'} }
+    let(:new_attributes) { {name: "another company", location: "4215 fort hamilton", open_hour: Time.new(2002, 10, 1, 8, 0, 0),close_hour: Time.new(2002, 10, 1, 22, 0, 0), description: "An Exclusive SPA", phone_number: '123456789'} }
 
-    let(:invalid_attributes) { {name: nil, location: "4215 fort hamilton", hours: '9AM-9PM', description: "An Exclusive SPA", phone_number: nil} }
+    let(:invalid_attributes) { {name: nil, location: "4215 fort hamilton", open_hour: Time.new(2002, 10, 1, 8, 0, 0),close_hour: Time.new(2002, 10, 1, 22, 0, 0), description: "An Exclusive SPA", phone_number: nil} }
 
     it 'update the store information' do
       user_admin.add_role :admin
@@ -94,7 +94,7 @@ RSpec.describe StoresController, type: :controller do
 
       put :update, params:{ id: store1.to_param, store: new_attributes} 
 
-      expect(response).to redirect_to("/stores/#{store1.id}")
+      expect(response).to redirect_to("/admin/stores_hours")
     end
 
     it 're-render the edit template when the input is invalid' do

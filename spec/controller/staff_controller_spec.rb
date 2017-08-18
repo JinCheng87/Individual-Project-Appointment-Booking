@@ -4,7 +4,7 @@ require 'database_cleaner'
 RSpec.describe StaffsController, type: :controller do
   render_views
 
-  let(:store) { Store.create!( name: "company name", location: "418 7th Ave Brooklyn", hours: '10AM-10PM', description: "An Exclusive SPA, ", phone_number: '1234567890' ) }
+  let(:store) { Store.create!( name: "company name", location: "418 7th Ave Brooklyn", open_hour: Time.new(2002, 10, 1, 8, 0, 0),close_hour: Time.new(2002, 10, 1, 22, 0, 0), description: "An Exclusive SPA, ", phone_number: '1234567890' ) }
 
   let(:user_admin){
     User.create!(name: 'admin', email: 'admin@gmail.com', password: '123456', phone_number: '6469155917')

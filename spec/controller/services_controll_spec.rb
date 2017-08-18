@@ -4,7 +4,7 @@ require 'database_cleaner'
 RSpec.describe ServicesController, type: :controller do
   render_views
 
-  let(:store) { Store.create!( name: "company name", location: "418 7th Ave Brooklyn", hours: '10AM-10PM', description: "An Exclusive SPA, ", phone_number: '1234567890' ) }
+  let(:store) { Store.create!( name: "company name", location: "418 7th Ave Brooklyn", open_hour: Time.new(2002, 10, 1, 8, 0, 0),close_hour: Time.new(2002, 10, 1, 22, 0, 0), description: "An Exclusive SPA, ", phone_number: '1234567890' ) }
   let(:service_params) { { name: 'collagen Mask', duration: '30', price: '30',description: 'Hydrating, brightening and firm the skin.', category: 'special treatment' } }
   let(:service_params_2) { { name: 'massage', duration: '60', price: '90',description: 'Hydrating, brightening and firm the skin.', category: 'special treatment' } }
 
