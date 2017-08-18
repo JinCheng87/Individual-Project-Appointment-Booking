@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'admin/stores/:store_id/schedule/:id', to:'admin#show_calendars', as: 'store_schedule'
   get 'admin/employees', to:'admin#show_employees',as: 'show_empolyees'
   get 'admin/appointments', to:'admin#show_appointments', as: 'show_appointments'
-  get 'admin/stores', to:'admin#show_stores', as: 'show_stores'
+  get 'admin/stores_hours', to:'admin#show_stores_hours', as: 'show_stores_hours'
   get 'admin/services', to:'admin#show_services', as: 'show_services'
   post '/stores/:store_id/staffs/:id/blocktime', to: 'block_times#create', as: 'new_block_time'
   delete '/stores/:store_id/staffs/:id/blocktime', to: 'block_times#destroy',as: 'delete_block_time'

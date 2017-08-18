@@ -18,13 +18,18 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :"Location: " %>
-      <%= f.text_area :location,placeholder:"location" %>
+      <%= f.label :"Open time: " %>
+      <%= f.time_select :open_hour %>
     </div>
 
     <div class="form-group">
-      <%= f.label :"Hours: " %>
-      <%= f.text_area :hours,placeholder:"hours" %>
+      <%= f.label :"Close time: " %>
+      <%= f.time_select :close_hour %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :"Location: " %>
+      <%= f.text_area :location,placeholder:"location" %>
     </div>
 
     <div class="field">

@@ -6,6 +6,8 @@
     <% end %>
   </tr>
   <% 24.times do |index| %>
+    <% if index >= @store.open_hour.strftime('%H').to_i && index <= @store.close_hour.strftime('%H').to_i%>
+
     <tr>
       <td class="info"><%= time=('%02d' % index +':00')%></td>
         <% @staffs.each do |staff| %>
@@ -33,4 +35,5 @@
     </tr>
 
   <% end %>
+<% end %>
 </table>

@@ -1,6 +1,6 @@
 <h3>Store: <%= @store.name %></h3>
 <p>Location: <%= @store.location %></p>
-<p>Hours: <%= @store.hours %></p>
+<p>Hours: <%= @store.open_hour %> - <%= @store.close_hour %></p>
 <p><%= @store.description %></p>
 <div id="options">
   <% if @is_admin %>

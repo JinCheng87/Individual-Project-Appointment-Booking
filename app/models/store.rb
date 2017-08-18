@@ -5,7 +5,8 @@ class Store < ApplicationRecord
 
   validates :name, presence: true
   validates :location, presence: true
-  validates :hours, presence: true
+  validates :open_hour, presence: true
+  validates :close_hour, presence: true
   validates :description, presence: true
 
   geocoded_by :location

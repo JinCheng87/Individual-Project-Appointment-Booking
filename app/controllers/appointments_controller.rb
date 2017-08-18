@@ -27,6 +27,13 @@ class AppointmentsController < ApplicationController
         render :new
         return
       end
+
+      if @appointment.date_time.strftime('%H').to_i <= @appointment.store.open_hour.strftime('%H').to_i || @appointment.date_time.strftime('%H').to_i >= @appointment.store.close_hour.strftime('%H').to_i
+        flash.now[:notice] = "Our store hours are from #{@store.open_hour.strftime('%H:%M')} to #{@store.close_hour.strftime('%H:%M')}, please pick another time."
+        render :new
+        return
+      end
+
       if @appointment.save
         redirect_to store_appointment_path(@store,@appointment,token: @appointment.token), notice: 'Appointment created successfully'
         UserMailer.confirm_appointment(@appointment).deliver_now

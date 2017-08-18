@@ -1,3 +1,4 @@
+
 class AdminController < ApplicationController
   before_action :authenticate_admin
 
@@ -28,5 +29,9 @@ class AdminController < ApplicationController
 
   def show_services
     @services = Service.all
+  end
+
+  def show_stores_hours
+    @stores = Store.all.order(:id)
   end
 end

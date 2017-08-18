@@ -6,9 +6,8 @@
   <tr><td><p>description: <%= @service.description %></p></td></tr>
   
 </table>
-<p><%= button_to 'Back', services_path, method: :get , class:"btn btn-primary center-block"%>
-<p><% if @is_admin %></p>
-<p><%= button_to 'edit', edit_service_path(@service), method: :get , class:"btn btn-primary center-block"%>
-<br>
-<%= button_to 'delete', @service, method: :delete, data: {confirm: 'Are you sure?'}, class:"btn btn-primary center-block"%></p> 
+<p><%= link_to 'Back', services_path %>  
+<% if @is_admin %>
+<%= link_to 'Edit', edit_service_path(@service) %> 
+<%= link_to 'Delete', @service, data: {confirm: 'Are you sure?'} %> </p>
 <% end %>

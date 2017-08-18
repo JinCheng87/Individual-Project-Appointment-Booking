@@ -1,15 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-Store.create(name: 'STORE 1', location: "226 S Wabash Ave,Chicago, IL 60604", hours: '10AM-10PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
 
-  Store.create(name: 'STORE 2', location: "73 W Monroe st, Chicago, IL 60603", hours: '9AM-9PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
+Store.create(name: 'STORE 1', location: "226 S Wabash Ave,Chicago, IL 60604", open_hour: Time.zone.now, close_hour: Time.zone.now+8.hours, description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
 
-  Store.create(name: 'STORE 3', location: "1 S State st, Chicago, IL 60603", hours: '9AM-9PM', description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
+  Store.create(name: 'STORE 2', location: "73 W Monroe st, Chicago, IL 60603", open_hour: Time.zone.now, close_hour: Time.zone.now+8.hours, description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
+
+  Store.create(name: 'STORE 3', location: "1 S State st, Chicago, IL 60603", open_hour: Time.zone.now, close_hour: Time.zone.now+8.hours, description: "An Exclusive SPA offering luxurious cacials & therapeutic massages.",phone_number: Faker::PhoneNumber.cell_phone )
 
 
 Service.create(name: 'Basic Facial(For men, women and teens)', duration: '60', price: '50',description: 'cleansing, peeling, steam, eyebrows shaping, facial massage, remove blackhead, high frequency treatment, eye mask, cold mask', category: 'facial treatment')

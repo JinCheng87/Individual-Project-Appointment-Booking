@@ -227,4 +227,13 @@ body {
     background-color: rgba(140, 127, 127, 0.26);
 }
 
+.navbar-nav li a {
+    color: #4a4747;
+}
+
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    color: #fff;
+    background-color: rgb(225, 222, 222);
+}
 

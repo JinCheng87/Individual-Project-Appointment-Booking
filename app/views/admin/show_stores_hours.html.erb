@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          <li><%= link_to 'Schedule',store_schedule_path(1,Date.today) %></li>
+          <li><%= link_to 'Appointments', show_appointments_path %></li>
+          <li><%= link_to 'Empolyees', show_empolyees_path %></li>
+          <li><%= link_to 'Services', show_services_path %></li>
+          <li class="active"><%= link_to 'Hours', show_stores_hours_path %></li>
+        </ul>
+      </div>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 >Hours</h1>
+      <p class="page-header d-inline-block bg-warning">Hours will effect calendar display, and aviod customers schedule appointments outside of store hours.</p>
+      <table class="table table-hover">
+        <tr>
+          <th>Stores</th>
+          <th>Open</th>
+          <th>Close</th>
+          <th>Modify hours</th>
+        </tr>
+      <% @stores.each_with_index do |store,index| %>
+      <tr>
+        <td><p><%= store.name%></p></td>
+        <td><p><%= store.open_hour.strftime('%H:%M') %></p></td>
+        <td><p><%= store.close_hour.strftime('%H:%M') %></p></td>
+        <td><p><%= link_to 'edit',edit_store_path(store),method: :get %></p></td>
+      </tr>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
