@@ -4,7 +4,7 @@ require 'database_cleaner'
 RSpec.describe AppointmentsController, type: :controller do
   render_views
 
-  let!(:store) { Store.create!( name: "company name", location: "418 7th Ave Brooklyn", open_hour: Time.new(2002, 10, 1, 8, 0, 0),close_hour: Time.new(2002, 10, 1, 22, 0, 0), description: "An Exclusive SPA, ", phone_number: '1234567890' ) }
+  let!(:store) { Store.create!( name: "company name", location: "418 7th Ave Brooklyn", open_hour: Time.local(2002, 10, 1, 8, 0, 0),close_hour: Time.local(2002, 10, 1, 22, 0, 0), description: "An Exclusive SPA, ", phone_number: '1234567890' ) }
 
   let(:user_admin){
     User.create!(name: 'admin', email: 'admin@gmail.com', password: '123456', phone_number: '6469155917')
@@ -24,17 +24,17 @@ RSpec.describe AppointmentsController, type: :controller do
 
   let(:service){ Service.create!({ name: 'massage', duration: '60', price: '90',description: 'Hydrating, brightening and firm the skin.', category: 'special treatment' })}
 
-  let!(:appointment_params){ {name: 'Michael', date_time: Time.new(2018, 10, 1, 10, 0, 0),email: 'sfsdf@fsd.com', phone_number: '6362932934', service_ids:service.id, store_id:staff.store_id} }
+  let!(:appointment_params){ {name: 'Michael', date_time: Time.local(2018, 10, 1, 10, 0, 0),email: 'sfsdf@fsd.com', phone_number: '6362932934', service_ids:service.id, store_id:staff.store_id} }
 
-  let(:appointment_params_2){ {name: 'asdf', date_time: Time.new(2018, 10, 1, 10, 0, 0),email: 'sfsdf@fsd.com', phone_number: '6362988884', service_ids:service.id, store_id:staff.store_id} }
+  let(:appointment_params_2){ {name: 'asdf', date_time: Time.local(2018, 10, 1, 10, 0, 0),email: 'sfsdf@fsd.com', phone_number: '6362988884', service_ids:service.id, store_id:staff.store_id} }
 
-  let(:appointment_params_past){ {name: 'past', date_time: Time.new(2000, 10, 1, 10, 0, 0),email: 'sfsdf@fsd.com', phone_number: '6362988884', service_ids:service.id, store_id:staff.store_id} }
+  let(:appointment_params_past){ {name: 'past', date_time: Time.local(2000, 10, 1, 10, 0, 0),email: 'sfsdf@fsd.com', phone_number: '6362988884', service_ids:service.id, store_id:staff.store_id} }
 
-  let(:appointment_before_open_params){ {name: 'past', date_time: Time.new(2022, 10, 1, 7, 0, 0),email: 'sfsdf@fsd.com', phone_number: '6362988884', service_ids:service.id, store_id:staff.store_id} }
+  let(:appointment_before_open_params){ {name: 'past', date_time: Time.local(2022, 10, 1, 7, 0, 0),email: 'sfsdf@fsd.com', phone_number: '6362988884', service_ids:service.id, store_id:staff.store_id} }
 
-  let(:appointment_after_close_params){ {name: 'past', date_time: Time.new(2022, 10, 1, 23, 0, 0),email: 'sfsdf@fsd.com', phone_number: '6362988884', service_ids:service.id, store_id:staff.store_id} }
+  let(:appointment_after_close_params){ {name: 'past', date_time: Time.local(2022, 10, 1, 23, 0, 0),email: 'sfsdf@fsd.com', phone_number: '6362988884', service_ids:service.id, store_id:staff.store_id} }
 
-  let!(:appointment_invalid_params){ {name: 'Michael',date_time: Time.new(2018, 10, 1, 10, 0, 0), email: 'sfsdf@fsd.com', service_ids:service.id, store_id:staff.store_id} }
+  let!(:appointment_invalid_params){ {name: 'Michael',date_time: Time.local(2018, 10, 1, 10, 0, 0), email: 'sfsdf@fsd.com', service_ids:service.id, store_id:staff.store_id} }
 
   describe 'GET #new' do
     it 'render a appointment form' do
