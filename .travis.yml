@@ -3,5 +3,6 @@ rvm:
   - 2.4.0
 
 script:
-  - rails db:create db:migrate
+  - RAILS_ENV=test rake db:create
+  - RAILS_ENV=test rake db:migrate
   - bundle exec rspec
