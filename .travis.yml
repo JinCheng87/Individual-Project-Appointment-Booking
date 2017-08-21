@@ -9,5 +9,6 @@ script:
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec/
 before_script:
-  - postgresql -e 'create database booking_test'
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database booking_test;' -U postgres
 bundler_args: --binstubs=./bundler_stubs
