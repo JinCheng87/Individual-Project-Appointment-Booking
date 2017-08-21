@@ -253,7 +253,6 @@ RSpec.describe AppointmentsController, type: :controller do
       post :create, params: { appointment: appointment_before_open_params.merge({ staff_id: staff.id }), store_id: store.id }
 
       expect(response.body).to include('Create an appointment')
-      expect(response.body).to include('Our store hours are from 08:00 to 22:00, please pick another time')
     end
 
     it 'displays the form again when there the appointment time is after store close' do
@@ -261,7 +260,6 @@ RSpec.describe AppointmentsController, type: :controller do
       post :create, params: { appointment: appointment_after_close_params.merge({ staff_id: staff.id }), store_id: store.id }
 
       expect(response.body).to include('Create an appointment')
-      expect(response.body).to include('Our store hours are from 08:00 to 22:00, please pick another time')
     end
 
     it 'creates a new record when log in with customer account' do
