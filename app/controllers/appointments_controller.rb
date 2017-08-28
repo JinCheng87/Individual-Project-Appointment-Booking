@@ -80,8 +80,15 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
+    date_time = @appointment.date_time
     @appointment.destroy
-    redirect_to store_path(@store), notice: 'Appointment cancelled successfully'
+    if current_user
+      if current_user.has_role?(:admin)
+        redirect_to (store_schedule_path(@store,date_time.strftime('%Y-%m-%d'))), notice: 'Appointment cancelled successfully'
+      end
+    else
+      redirect_to (store_path(@store)), notice: 'Appointment cancelled successfully'
+    end
     UserMailer.cancel_appointment(@appointment).deliver_now
   end
 

@@ -41,12 +41,12 @@ Store.all.each do |store|
     store.staffs.create(name: Faker::Name.first_name, phone_number: Faker::PhoneNumber.cell_phone)
   end
     store.staffs.all.each do |staff|
-      5.times do
-        staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(Time.zone.now + 5, Time.zone.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:2, store_id:staff.store_id )
+      100.times do
+        staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(Time.zone.now + 20.days, Time.zone.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:2, store_id:staff.store_id )
         
-        staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(Time.zone.now + 5, Time.zone.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:1, store_id:staff.store_id )
+        staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(Time.zone.now + 20.days, Time.zone.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:1, store_id:staff.store_id )
 
-        staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(Time.zone.now + 5, Time.zone.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:3, store_id:staff.store_id )
+        staff.appointments.create(name: Faker::Name.name, date_time: Faker::Time.between(Time.zone.now + 20.days, Time.zone.now),email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, service_ids:3, store_id:staff.store_id )
       end
     end
 end
