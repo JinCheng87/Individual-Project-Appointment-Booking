@@ -1,7 +1,6 @@
 Appointment-booking
 =======================
-[![Build Status](https://travis-ci.org/JinCheng87/Individual-Rails-Project-Appointment-Booking.svg?branch=master)](https://travis-ci.org/JinCheng87/Individual-Rails-Project-Appointment-Booking)
-
+[![Build Status](https://travis-ci.org/JinCheng87/Individual-Project-Appointment-Booking.svg?branch=master)](https://travis-ci.org/JinCheng87/Individual-Project-Appointment-Booking)
 
 https://appt-booking.herokuapp.com/
 
@@ -12,13 +11,13 @@ Utilized Ruby on Rails, Boostrap, PostgreSQL, JavaScript, RSpec, jQuery
 Functionality:
 ==========================
 
-Customers are able to visit the site read informations(e.g. pirce, addresses, services)
+* Customers are able to visit the site read informations(e.g. pirce, addresses, services)
 
-Customers are also able to make an appointment for any branch of stores.(store owner can have multiple stores)
+* Customers are also able to make an appointment for any branch of stores.(store owner can have multiple stores)
 
-After appointment is been made, customer will receive an email notification.(rails action mailer)
+* After appointment is been made, customer will receive an email notification.(rails action mailer)
 
-In that Email notification customer are able to edit or cancel the appoiointment without sign in to account.(use token and heroku schedulr run rake task very hour to check upcoming appointments)
+* In that Email notification customer are able to edit or cancel the appoiointment without sign in to account.(use token and heroku schedulr run rake task very hour to check upcoming appointments)
 
 5 hours before appointment customer will receive a text message about the upcomming appointment.(twilio and rake task)
 
