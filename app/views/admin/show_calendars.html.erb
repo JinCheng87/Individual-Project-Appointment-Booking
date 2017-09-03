@@ -62,3 +62,14 @@
 </div>
 </div>
 </div>
+
+<script>
+  jQuery(function ($) {
+    $(".block").on("click",function(e){
+      e.preventDefault();
+      console.log($(this).parent())
+
+      // new_block_time_path(@store, staff, start_time: Time.zone.parse("#{date} + #{time}"))
+    })
+  })
+</script>

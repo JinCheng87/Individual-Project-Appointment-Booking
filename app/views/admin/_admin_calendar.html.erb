@@ -12,7 +12,7 @@
       <td class="info"><%= time=('%02d' % index +':00')%></td>
         <% @staffs.each do |staff| %>
         <%if staff.available(date, index, 0) &&  !staff.is_blocked(Time.zone.parse("#{date} + #{time}")).any?%>
-          <td class="table-success"><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: Time.zone.parse("#{date}+ #{time}")) %> | <%= link_to 'block', new_block_time_path(@store, staff, start_time: Time.zone.parse("#{date} + #{time}")), method: :post%></td>
+          <td class="table-success"><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: Time.zone.parse("#{date}+ #{time}")) %> | <%= link_to 'block', new_block_time_path(@store, staff, start_time: Time.zone.parse("#{date} + #{time}")), method: :post, class:'block'%></td>
         <% elsif staff.is_blocked(Time.zone.parse("#{date} + #{time}")).any? %>
             <td class="table-danger"><%= link_to 'unblock', delete_block_time_path(@store, id: staff.id, block_time_id: staff.is_blocked(Time.zone.parse("#{date} + #{time}")).ids), method: :delete %></td>
         <% else %>
@@ -25,7 +25,7 @@
       <td class="info"><%= time=('%02d' % index +':30')%></td>
         <% @staffs.each do |staff| %>
         <%if staff.available(date, index, 30) &&  !staff.is_blocked(Time.zone.parse("#{date} + #{time}")).any? %>
-          <td class="table-success"><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: Time.zone.parse("#{date}+ #{time}")) %> | <%= link_to 'block', new_block_time_path(@store, staff, start_time: Time.zone.parse("#{date} + #{time}")), method: :post%></td>
+          <td class="table-success"><%= link_to 'book', new_store_appointment_path(@store, staff_id: staff.id, date_time: Time.zone.parse("#{date}+ #{time}")) %> | <span class="block" data-store="<%= @store.id %>" data-staff="<%= staff.id %>" data-time="<%= staff.is_blocked(Time.zone.parse("<%= date} + #{time}")).ids %>">block</span> </td>
         <% elsif staff.is_blocked(Time.zone.parse("#{date} + #{time}")).any? %>
           <td class="table-danger"><%= link_to 'unblock', delete_block_time_path(@store, id: staff.id, block_time_id: staff.is_blocked(Time.zone.parse("#{date} + #{time}")).ids), method: :delete %></td>
         <% else %>
