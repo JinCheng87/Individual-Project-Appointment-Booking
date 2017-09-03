@@ -6,7 +6,6 @@ class BlockTimesController < ApplicationController
     if !@staff.is_blocked(start_time).any?
       @staff.block_times.create!(start_time: start_time, end_time: end_time)
     end
-    redirect_to store_schedule_path(@staff.store_id, start_time.strftime('%Y-%m-%d'))
   end
 
   def destroy

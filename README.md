@@ -19,13 +19,13 @@ Functionality:
 
 * In that Email notification customer are able to edit or cancel the appoiointment without sign in to account.(use token and heroku schedulr run rake task very hour to check upcoming appointments)
 
-5 hours before appointment customer will receive a text message about the upcomming appointment.(twilio and rake task)
+* 5 hours before appointment customer will receive a text message about the upcomming appointment.(twilio and rake task)
 
-Admin are able to view and make appointments by canlendar.
+* Admin are able to view and make appointments by canlendar.
 
-If there is a employee on leave or come late, admin can block the employee's availablity so that customer won't be able to choose.(block by date and time)
+* If there is a employee on leave or there is a walking customer, admin can block the employee's availablity so that customer won't be able to choose.(block by date and time)
 
-Admin also are able to set the store hours, so that no one can make an appointment outside of store hours.
+* Admin also are able to set the store hours, so that no one can make an appointment outside of store hours.
 
 ![screenshot](https://github.com/JinCheng87/Individual-Project-Appointment-Booking/blob/master/app/assets/images/Screen%20Shot.png)
 
