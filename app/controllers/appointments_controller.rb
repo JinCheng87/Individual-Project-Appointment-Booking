@@ -37,6 +37,16 @@ class AppointmentsController < ApplicationController
       if @appointment.save
         redirect_to store_appointment_path(@store,@appointment,token: @appointment.token), notice: 'Appointment created successfully'
         UserMailer.confirm_appointment(@appointment).deliver_now
+
+        client = Twilio::REST::Client.new
+        client.messages.create({
+        from: Rails.application.secrets.twilio_phone,
+        to: '+16469155917', # your sign up phone number
+        body: 'test?',
+        })
+
+
+
       else
         render :new
       end
