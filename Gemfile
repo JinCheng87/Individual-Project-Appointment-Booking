@@ -22,6 +22,7 @@ gem "rspec-expectations", :github => "rspec/rspec-expectations"
 gem "rspec-mocks", :github => "rspec/rspec-mocks"
 gem "rspec-support", :github => "rspec/rspec-support"
 gem "rspec-rails", :github => "rspec/rspec-rails"
+gem 'twilio-ruby', '~> 5.2.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.4'
 # Use postgresql as the database for Active Record

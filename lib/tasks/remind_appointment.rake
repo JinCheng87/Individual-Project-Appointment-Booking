@@ -8,7 +8,9 @@ namespace :reminder do
     
     appointments.flatten.each do |appointment|
       @appointment = appointment
-      UserMailer.remind_appointment(@appointment).deliver_now
+      body = "This is a reminder that you having an appointment with us at #{@appointment.start_time}, if you would like to cancel, please call us #{@appointment.store.phone_number}. Thank you!"
+      service = SendTextMessage.new('+16469155917',body)
+      service.send_message
       @appointment.update_attributes(has_been_reminded: true)
     end
   end
