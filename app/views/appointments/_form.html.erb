@@ -41,6 +41,9 @@
       <%= f.label :service %> 
       <%= f.select :service_ids, @services.collect { |service| [service.name, service.id]}, {}, {class:"form-control input-lg"}%> 
     </div>
+
+      <p class="text-left"><strong>Store:</strong> <%= @store.location %></p>
+
     <%= hidden_field_tag 'token', params[:token] %>
     <div class="action">
       <%= f.submit class:"btn btn-primary center-block"%>
